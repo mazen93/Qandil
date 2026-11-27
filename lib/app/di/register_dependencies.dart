@@ -5,6 +5,7 @@ import '../../core/config/app_config.dart';
 import '../../core/database/app_database.dart';
 import '../../core/network/quran_api_client.dart';
 import '../../core/network/quran_auth_token_provider.dart';
+import '../../core/notifications/adhan_player_service.dart';
 import '../../core/notifications/local_notification_service.dart';
 import '../../features/adhkar/data/repositories/adhkar_repository_impl.dart';
 import '../../features/adhkar/domain/repositories/adhkar_repository.dart';
@@ -99,10 +100,18 @@ Future<void> registerDependencies({
     );
   }
 
+  if (!getIt.isRegistered<AdhanPlayerService>()) {
+    getIt.registerLazySingleton<AdhanPlayerService>(
+      AdhanPlayerService.new,
+      dispose: (service) => service.dispose(),
+    );
+  }
+
   if (!getIt.isRegistered<LocalNotificationService>()) {
     getIt.registerLazySingleton<LocalNotificationService>(
       () => LocalNotificationService(
         gateway: getIt<LocalNotificationGateway>(),
+        adhanPlayer: getIt<AdhanPlayerService>(),
       ),
     );
   }

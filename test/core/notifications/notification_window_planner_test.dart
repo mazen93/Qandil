@@ -9,7 +9,9 @@ class FakeLocalNotificationGateway implements LocalNotificationGateway {
   int cancelAllCalls = 0;
 
   @override
-  Future<void> initialize() async {}
+  Future<void> initialize({
+    void Function(String? payload)? onNotificationTapped,
+  }) async {}
 
   @override
   Future<bool> areNotificationsEnabled() async => true;

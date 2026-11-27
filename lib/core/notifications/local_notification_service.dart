@@ -6,12 +6,15 @@ import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../features/settings/domain/entities/app_settings.dart';
+import 'adhan_player_service.dart';
 import 'notification_entities.dart';
 import 'notification_window_planner.dart';
 
 /// Gateway abstracting `FlutterLocalNotificationsPlugin` so scheduling logic is 100% unit-testable.
 abstract interface class LocalNotificationGateway {
-  Future<void> initialize();
+  Future<void> initialize({
+    void Function(String? payload)? onNotificationTapped,
+  });
 
   Future<bool> requestNotificationsPermission();
 
@@ -35,9 +38,15 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
 
   final FlutterLocalNotificationsPlugin _plugin;
   bool _initialized = false;
+  void Function(String? payload)? _onNotificationTapped;
 
   @override
-  Future<void> initialize() async {
+  Future<void> initialize({
+    void Function(String? payload)? onNotificationTapped,
+  }) async {
+    if (onNotificationTapped != null) {
+      _onNotificationTapped = onNotificationTapped;
+    }
     if (_initialized) return;
     tz_data.initializeTimeZones();
 
@@ -56,9 +65,21 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
     );
 
     try {
-      await _plugin.initialize(settings: initSettings);
+      await _plugin.initialize(
+        settings: initSettings,
+        onDidReceiveNotificationResponse: (response) {
+          _onNotificationTapped?.call(response.payload);
+        },
+      );
       await _createAndroidChannels();
       _initialized = true;
+
+      final launchDetails = await _plugin.getNotificationAppLaunchDetails();
+      if (launchDetails != null && launchDetails.didNotificationLaunchApp) {
+        _onNotificationTapped?.call(
+          launchDetails.notificationResponse?.payload,
+        );
+      }
     } catch (_) {
       // Safe fallback in headless unit test environments.
     }
@@ -253,12 +274,28 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
 class LocalNotificationService {
   LocalNotificationService({
     LocalNotificationGateway? gateway,
+    AdhanPlayerService? adhanPlayer,
     DateTime Function()? clock,
   })  : _gateway = gateway ?? FlutterLocalNotificationGateway(),
+        _adhanPlayer = adhanPlayer,
         _clock = clock ?? DateTime.now;
 
   final LocalNotificationGateway _gateway;
+  final AdhanPlayerService? _adhanPlayer;
   final DateTime Function() _clock;
+
+  void _handleNotificationTapped(String? payload) {
+    if (payload == null) return;
+    if (payload == 'test_adhan' || payload.startsWith('prayer:')) {
+      _adhanPlayer?.playFullAdhan();
+    }
+  }
+
+  Future<void> _initGateway() {
+    return _gateway.initialize(
+      onNotificationTapped: _handleNotificationTapped,
+    );
+  }
 
   List<PlannedNotificationItem> _lastScheduledWindow = const [];
   bool _hasBundledAdhanAudio = false;
@@ -281,7 +318,7 @@ class LocalNotificationService {
   Future<List<PlannedNotificationItem>> rescheduleRollingWindow(
     AppSettings settings,
   ) async {
-    await _gateway.initialize();
+    await _initGateway();
     await checkBundledAdhanAudioAsset();
     await _gateway.cancelAll();
 
@@ -312,7 +349,7 @@ class LocalNotificationService {
     String title = 'Qandil — Test Adhan',
     String body = 'Allahu Akbar • Testing Adhan notification & sound',
   }) async {
-    await _gateway.initialize();
+    await _initGateway();
     await requestNotificationsPermission();
     final item = PlannedNotificationItem(
       id: 999001,

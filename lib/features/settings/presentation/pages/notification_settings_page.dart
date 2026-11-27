@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/di/register_dependencies.dart';
 import '../../../../app/theme/app_colors.dart';
+import '../../../../core/notifications/adhan_player_service.dart';
 import '../../../../core/notifications/local_notification_service.dart';
 import '../../../../core/notifications/notification_entities.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -417,6 +418,36 @@ class NotificationSettingsPage extends StatelessWidget {
                   },
                   icon: const Icon(Icons.notifications_active_rounded),
                   label: const Text('Trigger Adhan Now'),
+                ),
+                const SizedBox(height: 8),
+                StreamBuilder<bool>(
+                  stream: getIt<AdhanPlayerService>().isPlayingStream,
+                  initialData: getIt<AdhanPlayerService>().isPlaying,
+                  builder: (context, snapshot) {
+                    final isPlaying = snapshot.data ?? false;
+                    return OutlinedButton.icon(
+                      onPressed: () async {
+                        final player = getIt<AdhanPlayerService>();
+                        if (isPlaying) {
+                          await player.stop();
+                        } else {
+                          await player.playFullAdhan(
+                            title: 'Qandil — Full Adhan 🕌',
+                          );
+                        }
+                      },
+                      icon: Icon(
+                        isPlaying
+                            ? Icons.stop_rounded
+                            : Icons.play_arrow_rounded,
+                      ),
+                      label: Text(
+                        isPlaying
+                            ? 'Stop Full Adhan'
+                            : 'Play Full Adhan (2m13s)',
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 16),
               ],
