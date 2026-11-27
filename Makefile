@@ -20,6 +20,8 @@ DEVICE_FLAG := $(if $(DEVICE),-d $(DEVICE),)
 .PHONY: help check-env devices run run-dev run-staging run-prod \
         run-android run-ios ios-config \
         build-apk build-aab build-ios build-ipa \
+        build-android-prod build-apk-prod build-ios-prod build-prod-all \
+        open-ios-archive android-keystore \
         pub pods gen format analyze test clean
 
 help: ## Show available targets
@@ -27,14 +29,15 @@ help: ## Show available targets
 	@echo "Qandil Makefile (ENV=$(ENV), ENV_FILE=$(ENV_FILE))"
 	@echo "------------------------------------------------------------"
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 	@echo ""
 	@echo "Examples:"
-	@echo "  make run                  # Run with config/env.dev.json"
-	@echo "  make run-ios ENV=dev      # Run on iOS device/simulator"
-	@echo "  make run-android ENV=prod # Run on Android with prod env"
-	@echo "  make ios-config ENV=dev   # Sync env.dev.json for Xcode Cmd+R"
-	@echo "  make build-apk ENV=prod   # Build release APK"
+	@echo "  make run-ios ENV=dev        # Run dev on iPhone/Simulator"
+	@echo "  make run-android ENV=dev    # Run dev on Android"
+	@echo "  make build-android-prod     # Build Google Play prod AAB (ENV=prod)"
+	@echo "  make build-ios-prod         # Build App Store prod IPA/Archive (ENV=prod)"
+	@echo "  make open-ios-archive       # Open iOS Archive in Xcode Organizer"
+	@echo "  make build-prod-all         # Build both Android AAB & iOS Archive (ENV=prod)"
 	@echo ""
 
 check-env:
@@ -108,8 +111,41 @@ build-aab: check-env ## Build release Android App Bundle (AAB) with flavor ENV
 build-ios: check-env ## Build release iOS app (no codesign) with ENV
 	$(FLUTTER) build ios --release --no-codesign --dart-define-from-file=$(ENV_FILE)
 
-build-ipa: check-env ## Build release iOS IPA with ENV
+build-ipa: check-env ## Build release iOS IPA / Xcode Archive with ENV
 	$(FLUTTER) build ipa --release --dart-define-from-file=$(ENV_FILE)
+
+build-android-prod: ## Build Google Play production Android App Bundle (.aab) with ENV=prod
+	@$(MAKE) build-aab ENV=prod
+
+build-apk-prod: ## Build production Android release APK (.apk) with ENV=prod
+	@$(MAKE) build-apk ENV=prod
+
+build-ios-prod: ## Build App Store production iOS Archive (.xcarchive) & IPA with ENV=prod
+	@$(MAKE) ios-config ENV=prod
+	$(FLUTTER) build ipa --release --dart-define-from-file=config/env.prod.json
+
+open-ios-archive: ## Open built iOS Xcode Archive in Xcode Organizer for App Store upload
+	@if [ -d "build/ios/archive/Runner.xcarchive" ]; then \
+		open build/ios/archive/Runner.xcarchive; \
+	else \
+		echo "Error: build/ios/archive/Runner.xcarchive not found. Run 'make build-ios-prod' first."; \
+		exit 1; \
+	fi
+
+build-prod-all: ## Build both Google Play Android AAB and App Store iOS Archive/IPA (ENV=prod)
+	@$(MAKE) build-android-prod
+	@$(MAKE) build-ios-prod
+
+android-keystore: ## Generate Android upload keystore and android/key.properties if missing
+	@if [ -f "android/key.properties" ] || [ -f "android/app/upload-keystore.jks" ]; then \
+		echo "Android keystore already exists at android/app/upload-keystore.jks (skipping to protect existing key)."; \
+	else \
+		STORE_PASS=$$(python3 -c "import secrets; print(secrets.token_urlsafe(18))"); \
+		keytool -genkeypair -v -keystore android/app/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload -dname "CN=Mohamed Mazen, OU=Mobile, O=Qandil, L=Cairo, ST=Cairo, C=EG" -storepass "$$STORE_PASS" -keypass "$$STORE_PASS"; \
+		printf "storePassword=%s\nkeyPassword=%s\nkeyAlias=upload\nstoreFile=upload-keystore.jks\n" "$$STORE_PASS" "$$STORE_PASS" > android/key.properties; \
+		chmod 600 android/key.properties; \
+		echo "Created android/app/upload-keystore.jks and android/key.properties"; \
+	fi
 
 pub: ## Install Flutter dependencies
 	$(FLUTTER) pub get
