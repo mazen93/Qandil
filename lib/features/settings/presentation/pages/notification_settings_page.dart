@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/di/register_dependencies.dart';
 import '../../../../app/theme/app_colors.dart';
+import '../../../../core/config/app_config.dart';
 import '../../../../core/notifications/adhan_player_service.dart';
 import '../../../../core/notifications/local_notification_service.dart';
 import '../../../../core/notifications/notification_entities.dart';
@@ -59,6 +60,9 @@ class NotificationSettingsPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final notifService = getIt<LocalNotificationService>();
+    final isDevEnvironment = kDebugMode ||
+        (getIt.isRegistered<AppConfig>() &&
+            !getIt<AppConfig>().environment.isProduction);
 
     return Scaffold(
       appBar: AppBar(
@@ -365,7 +369,7 @@ class NotificationSettingsPage extends StatelessWidget {
                 ),
               ),
               // ── DEV-ONLY: Test Adhan notification ──────────────────────
-              if (kDebugMode) ...[
+              if (isDevEnvironment) ...[
                 const SizedBox(height: 24),
                 const Divider(),
                 const SizedBox(height: 8),
@@ -380,22 +384,22 @@ class NotificationSettingsPage extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: () async {
                     await notifService.triggerTestAdhanNotification(
-                      delay: const Duration(seconds: 3),
+                      delay: const Duration(seconds: 10),
                       title: 'Qandil — Test Adhan 🕌',
-                      body: 'الله أكبر • Testing Adhan sound (3s delay)',
+                      body: 'الله أكبر • Testing Adhan sound (10s delay)',
                     );
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
-                              'Test Adhan scheduled in 3 seconds — lock the screen!'),
+                              'Test Adhan scheduled in 10 seconds — lock the screen!'),
                           duration: Duration(seconds: 3),
                         ),
                       );
                     }
                   },
                   icon: const Icon(Icons.volume_up_rounded),
-                  label: const Text('Test Adhan (3 s delay)'),
+                  label: const Text('Test Adhan (10 s delay)'),
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.orange,
                   ),
