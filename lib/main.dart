@@ -15,6 +15,13 @@ Future<void> main() async {
   } catch (_) {
     // Allow boot to continue safely in desktop/test harnesses where background audio service is not supported.
   }
+
+  // Register all dependencies first so we can eagerly read settings
+  // from the local DB before the first frame is painted. This prevents
+  // the locale/theme flash where the app briefly renders with default
+  // Arabic locale before the saved preference is loaded async.
   await registerDependencies();
+  await preloadSettingsBeforeRunApp();
+
   runApp(const QandilApp());
 }

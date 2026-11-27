@@ -18,10 +18,15 @@ class SettingsCubit extends Cubit<SettingsState> {
     required SettingsRepository repository,
     LocalNotificationService? notificationService,
     ReadingModeService? readingModeService,
+    AppSettings? initialSettings,
   })  : _repository = repository,
         _notificationService = notificationService,
         _readingModeService = readingModeService,
-        super(const SettingsState());
+        super(
+          initialSettings != null
+              ? SettingsState(settings: initialSettings, isLoaded: true)
+              : const SettingsState(),
+        );
 
   final SettingsRepository _repository;
   final LocalNotificationService? _notificationService;

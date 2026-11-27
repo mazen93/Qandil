@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'app_colors.dart';
 import 'app_typography.dart';
@@ -55,6 +56,7 @@ abstract final class AppTheme {
         backgroundColor: AppColors.ivory,
         foregroundColor: AppColors.night,
         titleTextStyle: textTheme.headlineMedium,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       cardTheme: CardThemeData(
         elevation: 0,
@@ -161,6 +163,7 @@ abstract final class AppTheme {
         backgroundColor: AppColors.night,
         foregroundColor: AppColors.ivory,
         titleTextStyle: textTheme.headlineMedium,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       cardTheme: CardThemeData(
         elevation: 0,

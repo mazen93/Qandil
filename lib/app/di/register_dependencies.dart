@@ -7,6 +7,7 @@ import '../../core/network/quran_api_client.dart';
 import '../../core/network/quran_auth_token_provider.dart';
 import '../../core/notifications/adhan_player_service.dart';
 import '../../core/notifications/local_notification_service.dart';
+import '../../core/result/result.dart';
 import '../../features/adhkar/data/repositories/adhkar_repository_impl.dart';
 import '../../features/adhkar/domain/repositories/adhkar_repository.dart';
 import '../../features/adhkar/presentation/cubit/adhkar_cubit.dart';
@@ -31,6 +32,7 @@ import '../../features/quran/domain/services/dnd_platform_gateway.dart';
 import '../../features/quran/domain/services/reading_mode_service.dart';
 import '../../features/quran/presentation/cubit/quran_reader_cubit.dart';
 import '../../features/settings/data/repositories/settings_repository_impl.dart';
+import '../../features/settings/domain/entities/app_settings.dart';
 import '../../features/settings/domain/repositories/settings_repository.dart';
 import '../../features/settings/presentation/cubit/settings_cubit.dart';
 import '../../features/tasbih/data/repositories/tasbih_repository_impl.dart';
@@ -38,6 +40,22 @@ import '../../features/tasbih/domain/repositories/tasbih_repository.dart';
 import '../../features/tasbih/presentation/cubit/tasbih_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
+
+/// Eagerly loads [AppSettings] from the local DB and registers it as a singleton
+/// so [SettingsCubit] can start in the already-loaded state.
+/// Call this after [registerDependencies] but BEFORE [runApp].
+Future<void> preloadSettingsBeforeRunApp() async {
+  final repo = getIt<SettingsRepository>();
+  final result = await repo.getSettings();
+  final preloaded = switch (result) {
+    Success(:final value) => value,
+    _ => const AppSettings(),
+  };
+  if (getIt.isRegistered<AppSettings>()) {
+    await getIt.unregister<AppSettings>();
+  }
+  getIt.registerSingleton<AppSettings>(preloaded);
+}
 
 /// Registers all application dependencies in manual GetIt service locator.
 ///
@@ -333,6 +351,8 @@ Future<void> registerDependencies({
         repository: getIt<SettingsRepository>(),
         notificationService: getIt<LocalNotificationService>(),
         readingModeService: getIt<ReadingModeService>(),
+        initialSettings:
+            getIt.isRegistered<AppSettings>() ? getIt<AppSettings>() : null,
       ),
     );
   }
