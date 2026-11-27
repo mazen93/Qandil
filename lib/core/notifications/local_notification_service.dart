@@ -344,6 +344,9 @@ class LocalNotificationService {
   }
 
   /// Triggers a test Adhan notification immediately or after [delay] (for testing in dev).
+  ///
+  /// When [_adhanPlayer] is available, it also holds the background audio session
+  /// active across [delay] so the complete 2m13s Adhan plays even after locking the screen.
   Future<void> triggerTestAdhanNotification({
     Duration delay = Duration.zero,
     String title = 'Qandil — Test Adhan',
@@ -351,19 +354,22 @@ class LocalNotificationService {
   }) async {
     await _initGateway();
     await requestNotificationsPermission();
+    final useBackgroundFullPlayer = _adhanPlayer != null;
     final item = PlannedNotificationItem(
       id: 999001,
       channel: QandilNotificationChannel.prayer,
       title: title,
       body: body,
       scheduledAt: _clock().add(delay),
-      playSound: true,
+      playSound: !useBackgroundFullPlayer,
       payload: 'test_adhan',
     );
     if (delay <= Duration.zero) {
       await _gateway.showItemNow(item);
+      await _adhanPlayer?.playFullAdhan(title: title);
     } else {
       await _gateway.scheduleItem(item);
+      await _adhanPlayer?.scheduleFullAdhan(delay: delay, title: title);
     }
   }
 

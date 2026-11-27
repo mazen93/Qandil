@@ -351,6 +351,8 @@ Future<void> registerDependencies({
         repository: getIt<SettingsRepository>(),
         notificationService: getIt<LocalNotificationService>(),
         readingModeService: getIt<ReadingModeService>(),
+        // initialSettings:
+        //     getIt.isRegistered<AppSettings>() ? getIt<AppSettings>() : null,
         initialSettings:
             getIt.isRegistered<AppSettings>() ? getIt<AppSettings>() : null,
       ),

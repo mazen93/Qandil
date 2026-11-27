@@ -8,6 +8,7 @@
 
 ENV ?= dev
 DEVICE ?=
+MODE ?=
 FLUTTER ?= $(shell command -v flutter 2>/dev/null || echo /Users/mohamedmazen/Desktop/flutter/bin/flutter)
 DART ?= $(shell command -v dart 2>/dev/null || echo /Users/mohamedmazen/Desktop/flutter/bin/dart)
 
@@ -72,17 +73,27 @@ run-android: check-env ## Run app on Android with flavor ENV (pass DEVICE=<id> i
 		$(FLUTTER) run -d "$$ANDROID_ID" --flavor $(ENV) --dart-define-from-file=$(ENV_FILE); \
 	fi
 
-run-ios: check-env ## Run app on iOS (pass DEVICE=<id> if multiple iOS devices)
+run-ios: check-env ## Run app on iOS (defaults to --release on physical iPhone so it launches standalone after terminate; pass MODE=debug for hot-reload)
 	@if [ -n "$(DEVICE)" ]; then \
-		$(FLUTTER) run -d $(DEVICE) --dart-define-from-file=$(ENV_FILE); \
+		MODE_FLAG=$$(if [ -n "$(MODE)" ]; then echo "--$(MODE)"; else echo "--release"; fi); \
+		$(FLUTTER) run -d $(DEVICE) $$MODE_FLAG --dart-define-from-file=$(ENV_FILE); \
 	else \
-		IOS_ID=$$($(FLUTTER) devices --machine | python3 -c "import sys,json; devs=json.load(sys.stdin); print(next((d['id'] for d in devs if 'ios' in d.get('targetPlatform','').lower()), ''))"); \
+		IOS_INFO=$$($(FLUTTER) devices --machine | python3 -c "import sys,json; devs=json.load(sys.stdin); d=next((d for d in devs if 'ios' in d.get('targetPlatform','').lower()), None); print(f\"{d['id']}|{1 if d.get('emulator') else 0}\" if d else '')"); \
+		IOS_ID=$$(echo "$$IOS_INFO" | cut -d'|' -f1); \
+		IS_SIM=$$(echo "$$IOS_INFO" | cut -d'|' -f2); \
 		if [ -z "$$IOS_ID" ]; then \
 			echo "Error: No iOS device or simulator found. Run 'make devices' to check."; \
 			exit 1; \
 		fi; \
-		echo "Running on iOS device: $$IOS_ID ($(ENV_FILE))"; \
-		$(FLUTTER) run -d "$$IOS_ID" --dart-define-from-file=$(ENV_FILE); \
+		if [ -n "$(MODE)" ]; then \
+			MODE_FLAG="--$(MODE)"; \
+		elif [ "$$IS_SIM" = "1" ]; then \
+			MODE_FLAG="--debug"; \
+		else \
+			MODE_FLAG="--release"; \
+		fi; \
+		echo "Running on iOS device: $$IOS_ID ($$MODE_FLAG, $(ENV_FILE))"; \
+		$(FLUTTER) run -d "$$IOS_ID" $$MODE_FLAG --dart-define-from-file=$(ENV_FILE); \
 	fi
 
 ios-config: check-env ## Sync ENV into ios/Flutter/Generated.xcconfig for Xcode runs

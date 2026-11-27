@@ -18,6 +18,7 @@ class AdhanPlayerService {
 
   final AudioPlayer? _injectedPlayer;
   AudioPlayer? _player;
+  Timer? _scheduledTimer;
   StreamSubscription<PlayerState>? _stateSub;
   final StreamController<bool> _playingController =
       StreamController<bool>.broadcast();
@@ -48,6 +49,8 @@ class AdhanPlayerService {
 
   /// Plays the full Adhan audio from `assets/audio/adhan.mp3`.
   Future<void> playFullAdhan({String title = 'Qandil — Adhan'}) async {
+    _scheduledTimer?.cancel();
+    _scheduledTimer = null;
     final player = _ensurePlayer();
 
     try {
@@ -60,36 +63,88 @@ class AdhanPlayerService {
 
     try {
       await player.stop();
-      try {
-        await player.setAudioSource(
-          AudioSource.asset(
-            assetPath,
-            tag: MediaItem(
-              id: 'qandil_adhan',
-              album: 'Qandil',
-              title: title,
-              artist: 'Adhan',
-            ),
-          ),
-        );
-      } catch (_) {
-        // Fallback if JustAudioBackground was not initialized.
-        await player.setAsset(assetPath);
-      }
+      await player.setVolume(1.0);
+      await _loadAdhanSource(player, title: title);
       await player.play();
     } catch (_) {
       // Safe fallback if asset or audio hardware is unavailable.
     }
   }
 
+  /// Keeps the iOS background audio session alive at volume 0 during [delay]
+  /// (so locking the device does not suspend the app), then seeks to 0:00 and
+  /// plays the full 2m13s Adhan at full volume when [delay] elapses.
+  Future<void> scheduleFullAdhan({
+    required Duration delay,
+    String title = 'Qandil — Adhan',
+  }) async {
+    if (delay <= Duration.zero) {
+      await playFullAdhan(title: title);
+      return;
+    }
+
+    _scheduledTimer?.cancel();
+    final player = _ensurePlayer();
+
+    try {
+      final session = await AudioSession.instance;
+      await session.configure(const AudioSessionConfiguration.music());
+      await session.setActive(true);
+    } catch (_) {}
+
+    try {
+      await player.stop();
+      await _loadAdhanSource(player, title: title);
+      await player.setVolume(0.0);
+      await player.play();
+
+      _scheduledTimer = Timer(delay, () async {
+        try {
+          await player.seek(Duration.zero);
+          await player.setVolume(1.0);
+          if (!player.playing) {
+            await player.play();
+          }
+        } catch (_) {}
+      });
+    } catch (_) {}
+  }
+
+  Future<void> _loadAdhanSource(
+    AudioPlayer player, {
+    required String title,
+  }) async {
+    try {
+      await player.setAudioSource(
+        AudioSource.asset(
+          assetPath,
+          tag: MediaItem(
+            id: 'qandil_adhan',
+            album: 'Qandil',
+            title: title,
+            artist: 'Adhan',
+          ),
+        ),
+      );
+    } catch (_) {
+      // Fallback if JustAudioBackground was not initialized.
+      await player.setAsset(assetPath);
+    }
+  }
+
   /// Stops any currently playing Adhan audio.
   Future<void> stop() async {
+    _scheduledTimer?.cancel();
+    _scheduledTimer = null;
     try {
+      await _player?.setVolume(1.0);
       await _player?.stop();
     } catch (_) {}
   }
 
   Future<void> dispose() async {
+    _scheduledTimer?.cancel();
+    _scheduledTimer = null;
     await _stateSub?.cancel();
     await _playingController.close();
     await _player?.dispose();
