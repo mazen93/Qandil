@@ -89,14 +89,39 @@ class AudioCubit extends Cubit<AudioState> {
     );
   }
 
-  /// Selects a new default reciter and restarts playback if currently playing.
-  Future<void> selectReciter(int reciterId) async {
-    emit(state.copyWith(selectedReciterId: reciterId));
-    if (state.isPlaying) {
+  /// Selects a new default reciter and restarts playback if currently playing
+  /// (or invalidates the cached queue when paused so the next Play loads the new reciter).
+  Future<void> selectReciter(
+    int reciterId, {
+    int? currentSurahNumber,
+    String? currentSurahName,
+    int? versesCount,
+  }) async {
+    final wasPlaying = state.isPlaying;
+    final targetSurahNumber = currentSurahNumber ?? state.currentSurahNumber;
+    final targetSurahName = currentSurahName ?? state.currentSurahName;
+    final targetVersesCount =
+        versesCount ?? (state.queue.isNotEmpty ? state.queue.length : 7);
+    final targetStartAyah = (state.currentSurahNumber == targetSurahNumber)
+        ? (state.currentTrack?.ayahNumber ?? 1)
+        : 1;
+
+    if (wasPlaying) {
+      emit(state.copyWith(selectedReciterId: reciterId));
       await startSurahPlayback(
-        surahNumber: state.currentSurahNumber,
-        surahName: state.currentSurahName,
-        startAyah: state.currentTrack?.ayahNumber ?? 1,
+        surahNumber: targetSurahNumber,
+        surahName: targetSurahName,
+        versesCount: targetVersesCount,
+        startAyah: targetStartAyah,
+      );
+    } else {
+      await _player.stop();
+      emit(
+        state.copyWith(
+          selectedReciterId: reciterId,
+          queue: const [],
+          currentQueueIndex: 0,
+        ),
       );
     }
   }
@@ -104,11 +129,21 @@ class AudioCubit extends Cubit<AudioState> {
   /// Toggles between `verseByVerse` and `fullSurah` playback modes.
   Future<void> setPlaybackMode(AudioPlaybackMode mode) async {
     if (state.playbackMode == mode) return;
-    emit(state.copyWith(playbackMode: mode));
     if (state.isPlaying) {
+      emit(state.copyWith(playbackMode: mode));
       await startSurahPlayback(
         surahNumber: state.currentSurahNumber,
         surahName: state.currentSurahName,
+        versesCount: state.queue.isNotEmpty ? state.queue.length : 7,
+      );
+    } else {
+      await _player.stop();
+      emit(
+        state.copyWith(
+          playbackMode: mode,
+          queue: const [],
+          currentQueueIndex: 0,
+        ),
       );
     }
   }
@@ -201,7 +236,8 @@ class AudioCubit extends Cubit<AudioState> {
     }
 
     if (state.queue.isNotEmpty &&
-        state.currentSurahNumber == currentSurahNumber) {
+        state.currentSurahNumber == currentSurahNumber &&
+        state.currentTrack?.reciterId == state.selectedReciterId) {
       await _player.resume();
       emit(state.copyWith(isPlaying: true));
       return;

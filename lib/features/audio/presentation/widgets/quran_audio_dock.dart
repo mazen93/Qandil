@@ -85,7 +85,12 @@ class QuranAudioDock extends StatelessWidget {
                             )
                           : null,
                       onTap: () {
-                        audioCubit.selectReciter(reciter.id);
+                        audioCubit.selectReciter(
+                          reciter.id,
+                          currentSurahNumber: currentSurahNumber,
+                          currentSurahName: currentSurahName,
+                          versesCount: currentSurahVersesCount,
+                        );
                         try {
                           context
                               .read<SettingsCubit>()

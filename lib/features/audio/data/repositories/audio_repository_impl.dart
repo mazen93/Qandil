@@ -33,10 +33,17 @@ class AudioRepositoryImpl implements AudioRepository {
   static String fallbackChapterAudioUrl(int reciterId, int surahNumber) {
     final s = surahNumber.toString().padLeft(3, '0');
     final folder = switch (reciterId) {
-      6 || 12 => 'mahmood_khaleel_al-husaree',
-      8 || 9 => 'muhammad_siddeeq_al-minshaawee',
-      1 || 2 => 'abdulbaset_mujawwad',
+      6 => 'mahmood_khaleel_al-husaree',
+      12 => 'mahmood_khaleel_al-husaree_iza3a',
+      8 => 'minshawi_mujawwad',
+      9 => 'muhammad_siddeeq_al-minshaawee',
+      1 => 'abdulbaset_mujawwad',
+      2 => 'abdul_basit_murattal',
+      11 => 'mohammad_altablawi',
       3 => 'abdurrahmaan_as-sudais',
+      4 => 'abu_bakr_ash-shaatree',
+      5 => 'hani_ar-rifai',
+      10 => 'sa3ood_al-shuraym',
       _ => 'mishaari_raashid_al_3afaasee',
     };
     return 'https://download.quranicaudio.com/quran/$folder/$s.mp3';
@@ -50,12 +57,31 @@ class AudioRepositoryImpl implements AudioRepository {
     final s = surahNumber.toString().padLeft(3, '0');
     final a = ayahNumber.toString().padLeft(3, '0');
     final prefix = switch (reciterId) {
-      6 || 12 => 'Husary_128kbps',
-      8 || 9 => 'Minshawy_Murattal_128kbps',
-      1 || 2 => 'Abdul_Basit_Murattal_192kbps',
+      6 => 'Husary_128kbps',
+      12 => 'Husary_Muallim_128kbps',
+      8 => 'Minshawy_Mujawwad_192kbps',
+      9 => 'Minshawy_Murattal_128kbps',
+      1 => 'Abdul_Basit_Mujawwad_128kbps',
+      2 => 'Abdul_Basit_Murattal_192kbps',
+      11 => 'Mohammad_al_Tablaway_128kbps',
+      3 => 'Abdurrahmaan_As-Sudais_192kbps',
+      4 => 'Abu_Bakr_Ash-Shaatree_128kbps',
+      5 => 'Hani_Rifai_192kbps',
+      10 => 'Saood_ash-Shuraym_128kbps',
       _ => 'Alafasy_128kbps',
     };
     return 'https://everyayah.com/data/$prefix/$s$a.mp3';
+  }
+
+  static String resolveAudioUrl(String rawUrl) {
+    final trimmed = rawUrl.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      return trimmed;
+    }
+    if (trimmed.startsWith('//')) {
+      return 'https:$trimmed';
+    }
+    return '$_verseAudioCdnBase${trimmed.replaceFirst(RegExp(r'^/+'), '')}';
   }
 
   @override
@@ -95,9 +121,7 @@ class AudioRepositoryImpl implements AudioRepository {
 
           final parts = verseKey.split(':');
           final ayahNum = parts.length > 1 ? (int.tryParse(parts[1]) ?? 1) : 1;
-          final resolvedUrl = rawUrl.startsWith('http')
-              ? rawUrl
-              : '$_verseAudioCdnBase${rawUrl.replaceFirst(RegExp(r'^/+'), '')}';
+          final resolvedUrl = resolveAudioUrl(rawUrl);
 
           tracks.add(
             AudioQueueTrack(
@@ -173,7 +197,7 @@ class AudioRepositoryImpl implements AudioRepository {
         if (audioFileObj is Map<String, dynamic>) {
           final parsedUrl = audioFileObj['audio_url'] as String? ?? '';
           if (parsedUrl.isNotEmpty) {
-            remoteUrl = parsedUrl;
+            remoteUrl = resolveAudioUrl(parsedUrl);
           }
         }
       }
