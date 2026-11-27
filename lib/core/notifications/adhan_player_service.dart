@@ -18,6 +18,7 @@ class AdhanPlayerService {
   final AudioPlayer? _injectedPlayer;
   AudioPlayer? _player;
   Timer? _scheduledTimer;
+  Timer? _keepAliveTimer;
   StreamSubscription<PlayerState>? _stateSub;
   final StreamController<bool> _playingController =
       StreamController<bool>.broadcast();
@@ -31,6 +32,13 @@ class AdhanPlayerService {
   /// Returns the shared [AudioPlayer] instance so [QuranAudioPlayerService]
   /// and [AdhanPlayerService] never create conflicting `just_audio_background` players.
   AudioPlayer get sharedPlayer => _ensurePlayer();
+
+  void _cancelTimers() {
+    _scheduledTimer?.cancel();
+    _scheduledTimer = null;
+    _keepAliveTimer?.cancel();
+    _keepAliveTimer = null;
+  }
 
   AudioPlayer _ensurePlayer() {
     final existing = _player;
@@ -46,13 +54,16 @@ class AdhanPlayerService {
         }
         return;
       }
-      final playingNow =
-          state.playing && state.processingState != ProcessingState.completed;
+      final isWaitingForDelay = _scheduledTimer != null;
+      final playingNow = !isWaitingForDelay &&
+          state.playing &&
+          state.processingState != ProcessingState.completed;
       if (_isPlaying != playingNow) {
         _isPlaying = playingNow;
         _playingController.add(playingNow);
       }
-      if (state.processingState == ProcessingState.completed) {
+      if (!isWaitingForDelay &&
+          state.processingState == ProcessingState.completed) {
         _isAdhanActive = false;
         unawaited(created.stop());
       }
@@ -62,8 +73,7 @@ class AdhanPlayerService {
 
   /// Plays the full Adhan audio from `assets/audio/adhan.mp3`.
   Future<void> playFullAdhan({String title = 'Qandil — Adhan'}) async {
-    _scheduledTimer?.cancel();
-    _scheduledTimer = null;
+    _cancelTimers();
     _isAdhanActive = true;
     final player = _ensurePlayer();
 
@@ -77,10 +87,13 @@ class AdhanPlayerService {
 
     try {
       await player.stop();
+      await player.setLoopMode(LoopMode.off);
       await player.setSpeed(1.0);
       await player.setVolume(1.0);
       await _loadAdhanSource(player, title: title);
-      await player.play();
+      // Note: Do NOT await player.play() in just_audio because play()'s Future
+      // only completes when the entire 2m13s track finishes or pauses.
+      unawaited(player.play());
     } catch (_) {
       // Safe fallback if asset or audio hardware is unavailable.
     }
@@ -98,7 +111,7 @@ class AdhanPlayerService {
       return;
     }
 
-    _scheduledTimer?.cancel();
+    _cancelTimers();
     _isAdhanActive = true;
     final player = _ensurePlayer();
 
@@ -110,21 +123,54 @@ class AdhanPlayerService {
 
     try {
       await player.stop();
+      await player.setLoopMode(LoopMode.one);
       await player.setSpeed(1.0);
       await _loadAdhanSource(player, title: title);
       await player.setVolume(0.0);
-      await player.play();
 
+      // Schedule the unmute + restart timer BEFORE calling play() because
+      // just_audio's play() Future does not complete until playback ends.
       _scheduledTimer = Timer(delay, () async {
+        _scheduledTimer = null;
+        _keepAliveTimer?.cancel();
+        _keepAliveTimer = null;
         if (!_isAdhanActive) return;
         try {
+          final session = await AudioSession.instance;
+          await session.setActive(true);
+        } catch (_) {}
+        try {
+          await player.setLoopMode(LoopMode.off);
           await player.seek(Duration.zero);
           await player.setVolume(1.0);
           if (!player.playing) {
-            await player.play();
+            unawaited(player.play());
+          }
+          if (!_isPlaying) {
+            _isPlaying = true;
+            _playingController.add(true);
           }
         } catch (_) {}
       });
+
+      // Keep-alive heartbeat during the countdown: if locking the iPhone screen
+      // briefly pauses AVAudioSession, immediately resume muted playback so iOS
+      // keeps the background audio session alive until _scheduledTimer fires.
+      _keepAliveTimer = Timer.periodic(
+        const Duration(milliseconds: 500),
+        (_) {
+          if (!_isAdhanActive || _scheduledTimer == null) {
+            _keepAliveTimer?.cancel();
+            _keepAliveTimer = null;
+            return;
+          }
+          if (!player.playing) {
+            unawaited(player.play());
+          }
+        },
+      );
+
+      unawaited(player.play());
     } catch (_) {}
   }
 
@@ -153,22 +199,21 @@ class AdhanPlayerService {
   /// Called by [QuranAudioPlayerService] before loading a Quran track so
   /// any scheduled/active Adhan cleanly yields the shared [AudioPlayer].
   Future<void> relinquishToQuran() async {
-    _scheduledTimer?.cancel();
-    _scheduledTimer = null;
+    _cancelTimers();
     _isAdhanActive = false;
     if (_isPlaying) {
       _isPlaying = false;
       _playingController.add(false);
     }
     try {
+      await _player?.setLoopMode(LoopMode.off);
       await _player?.setVolume(1.0);
     } catch (_) {}
   }
 
   /// Stops any currently playing Adhan audio.
   Future<void> stop() async {
-    _scheduledTimer?.cancel();
-    _scheduledTimer = null;
+    _cancelTimers();
     final wasAdhan = _isAdhanActive;
     _isAdhanActive = false;
     if (_isPlaying) {
@@ -176,6 +221,7 @@ class AdhanPlayerService {
       _playingController.add(false);
     }
     try {
+      await _player?.setLoopMode(LoopMode.off);
       await _player?.setVolume(1.0);
       if (wasAdhan) {
         await _player?.stop();
@@ -184,8 +230,7 @@ class AdhanPlayerService {
   }
 
   Future<void> dispose() async {
-    _scheduledTimer?.cancel();
-    _scheduledTimer = null;
+    _cancelTimers();
     _isAdhanActive = false;
     await _stateSub?.cancel();
     await _playingController.close();
