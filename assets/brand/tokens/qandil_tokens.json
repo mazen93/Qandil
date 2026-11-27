@@ -1,0 +1,39 @@
+{
+  "name": "Qandil",
+  "colors": {
+    "night": "#0F2A2E",
+    "lantern": "#F2A93B",
+    "lanternDeep": "#D98A12",
+    "ivory": "#FBF6EA",
+    "nile": "#1F6F5C",
+    "sand": "#E6D8B8",
+    "surfaceDark": "#163A3F",
+    "outlineDark": "#2D5358",
+    "textMutedLight": "#4A5B5E",
+    "textMutedDark": "#B9C9C6",
+    "error": "#B3261E",
+    "errorDark": "#F2B8B5"
+  },
+  "fonts": {
+    "display": "Reem Kufi",
+    "text": "IBM Plex Sans Arabic"
+  },
+  "radius": {
+    "card": 16,
+    "button": 14,
+    "icon": "22% of side (iOS/Android mask applies its own)"
+  },
+  "contrast": {
+    "Ivory on Night": 14.0,
+    "Night on Ivory": 14.0,
+    "Lantern on Night": 7.56,
+    "Night on Lantern": 7.56,
+    "Ivory on Nile": 5.58,
+    "Nile on Ivory": 5.58,
+    "Night on Sand": 10.7,
+    "Lantern on Ivory (shapes only)": 1.85,
+    "Lantern deep on Ivory": 2.56,
+    "Muted text #4A5B5E on Ivory": 6.6,
+    "Muted text #B9C9C6 on Night": 8.79
+  }
+}

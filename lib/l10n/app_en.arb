@@ -1,0 +1,1440 @@
+{
+  "@@locale": "en",
+  "appTitle": "Qandil",
+  "@appTitle": {
+    "description": "Application brand name"
+  },
+  "appTagline": "Light for your day.",
+  "@appTagline": {
+    "description": "Qandil brand tagline"
+  },
+  "navHome": "Home",
+  "@navHome": {
+    "description": "Bottom navigation label for Home tab"
+  },
+  "navQuran": "Quran",
+  "@navQuran": {
+    "description": "Bottom navigation label for Quran tab"
+  },
+  "navPrayer": "Prayer",
+  "@navPrayer": {
+    "description": "Bottom navigation label for Prayer tab"
+  },
+  "navDhikr": "Dhikr",
+  "@navDhikr": {
+    "description": "Bottom navigation label for Dhikr tab"
+  },
+  "navMore": "More",
+  "@navMore": {
+    "description": "Bottom navigation label for More/Settings tab"
+  },
+  "homeGreeting": "Peace be upon you",
+  "@homeGreeting": {
+    "description": "Calm greeting on the Home header"
+  },
+  "nextPrayerCardTitle": "Next Prayer",
+  "@nextPrayerCardTitle": {
+    "description": "Title of the Next Prayer card on Home"
+  },
+  "nextPrayerPlaceholder": "On-device prayer schedule and countdown will appear here once location is configured.",
+  "@nextPrayerPlaceholder": {
+    "description": "Placeholder text for Next Prayer card in Phase 1"
+  },
+  "todaysWirdCardTitle": "Today's Wird",
+  "@todaysWirdCardTitle": {
+    "description": "Title of Today's Wird card on Home"
+  },
+  "todaysWirdPlaceholder": "Continue reading from your saved Mushaf page and track your daily Khatmah progress.",
+  "@todaysWirdPlaceholder": {
+    "description": "Placeholder text for Today's Wird card in Phase 1"
+  },
+  "continueReadingAction": "Continue Reading",
+  "@continueReadingAction": {
+    "description": "CTA button to resume reading from saved position"
+  },
+  "savedReadingPositionSummary": "Surah {surahName} • Ayah {ayahNumber} • Page {pageNumber} (Juz {juzNumber})",
+  "@savedReadingPositionSummary": {
+    "description": "Summary of saved reading position on Home card",
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "int"
+      },
+      "pageNumber": {
+        "type": "int"
+      },
+      "juzNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "khatmahDailyGoalLabel": "Daily target: {pages} pages/day ({percent}% complete)",
+  "@khatmahDailyGoalLabel": {
+    "description": "Khatmah daily goal summary",
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "tasbihCardTitle": "Daily Tasbih",
+  "@tasbihCardTitle": {
+    "description": "Title of Tasbih card on Home"
+  },
+  "tasbihPlaceholder": "Track your daily dhikr counts and streak locally on your device.",
+  "@tasbihPlaceholder": {
+    "description": "Placeholder text for Tasbih card in Phase 1"
+  },
+  "verseOfTheDayCardTitle": "Verse of the Day",
+  "@verseOfTheDayCardTitle": {
+    "description": "Title of Verse of the Day card on Home"
+  },
+  "verseOfTheDayPlaceholder": "Loads deterministically from the verified local Quran Foundation dataset (Phase 2). No text is ever generated from memory.",
+  "@verseOfTheDayPlaceholder": {
+    "description": "Placeholder text for Verse of the Day card ensuring strict content integrity"
+  },
+  "quranShellTitle": "Holy Quran",
+  "@quranShellTitle": {
+    "description": "Title for Quran tab shell"
+  },
+  "quranShellDescription": "Mushaf page view, verse list, verified tafsir, translations, and recitations.",
+  "@quranShellDescription": {
+    "description": "Description on Quran tab shell"
+  },
+  "readerModeMushafPage": "Mushaf Page",
+  "@readerModeMushafPage": {
+    "description": "Mushaf page view toggle label"
+  },
+  "readerModeVerseList": "Verse List",
+  "@readerModeVerseList": {
+    "description": "Verse list view toggle label"
+  },
+  "readerNavSurah": "Surah",
+  "@readerNavSurah": {
+    "description": "Browse by Surah tab label"
+  },
+  "readerNavJuz": "Juz",
+  "@readerNavJuz": {
+    "description": "Browse by Juz tab label"
+  },
+  "readerNavPage": "Page",
+  "@readerNavPage": {
+    "description": "Browse by Page tab label"
+  },
+  "readerJumpToPage": "Jump to Page",
+  "@readerJumpToPage": {
+    "description": "Jump to page dialog title and action"
+  },
+  "readerJumpToPageHint": "Enter Mushaf page (1 - 604)",
+  "@readerJumpToPageHint": {
+    "description": "Input hint for jump to page"
+  },
+  "readerJumpAction": "Go",
+  "@readerJumpAction": {
+    "description": "Confirm jump to page button"
+  },
+  "readerSearchHint": "Search Arabic Quran text...",
+  "@readerSearchHint": {
+    "description": "Search input placeholder in Quran reader"
+  },
+  "readerSearchNoResults": "No matching verses found in the loaded pages.",
+  "@readerSearchNoResults": {
+    "description": "Empty state for Quran search"
+  },
+  "readerPageHeader": "Page {pageNumber} • Juz {juzNumber}",
+  "@readerPageHeader": {
+    "description": "Header bar inside Mushaf page view",
+    "placeholders": {
+      "pageNumber": {
+        "type": "int"
+      },
+      "juzNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "readerSelectNavigationTitle": "Navigate Quran",
+  "@readerSelectNavigationTitle": {
+    "description": "Title for Surah/Juz/Page navigation sheet"
+  },
+  "khatmahPlannerTitle": "Khatmah Planner",
+  "@khatmahPlannerTitle": {
+    "description": "Title of Khatmah planner bottom sheet"
+  },
+  "khatmahTargetDaysLabel": "Days to complete Khatmah",
+  "@khatmahTargetDaysLabel": {
+    "description": "Label for selecting Khatmah duration in days"
+  },
+  "khatmahPagesPerDayResult": "{pages} pages per day",
+  "@khatmahPagesPerDayResult": {
+    "description": "Computed pages per day",
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
+  "khatmahCatchUpWarning": "Behind by {behindPages} pages • Catch-up pace: {catchUpPages} pages/day over {remainingDays} remaining days.",
+  "@khatmahCatchUpWarning": {
+    "description": "Catch-up alert when behind schedule",
+    "placeholders": {
+      "behindPages": {
+        "type": "int"
+      },
+      "catchUpPages": {
+        "type": "int"
+      },
+      "remainingDays": {
+        "type": "int"
+      }
+    }
+  },
+  "khatmahOnTrackMessage": "You are on track with your daily Khatmah schedule.",
+  "@khatmahOnTrackMessage": {
+    "description": "Message shown when Khatmah is on track"
+  },
+  "khatmahSavePlanAction": "Save Khatmah Plan",
+  "@khatmahSavePlanAction": {
+    "description": "Button to save Khatmah plan"
+  },
+  "readerSettingsTitle": "Reading Settings",
+  "@readerSettingsTitle": {
+    "description": "Title of Quran reading settings bottom sheet"
+  },
+  "readerFontSizeLabel": "Mushaf Font Size",
+  "@readerFontSizeLabel": {
+    "description": "Slider label for Mushaf font size"
+  },
+  "readerLineSpacingLabel": "Line Spacing",
+  "@readerLineSpacingLabel": {
+    "description": "Slider label for Mushaf line spacing"
+  },
+  "readerNightModeLabel": "Night Mode (Dark)",
+  "@readerNightModeLabel": {
+    "description": "Toggle for Night mode inside reader"
+  },
+  "readerKeepScreenAwakeLabel": "Keep Screen Awake While Reading",
+  "@readerKeepScreenAwakeLabel": {
+    "description": "Toggle for wakelock while reading"
+  },
+  "verseSheetTafsirTab": "Tafsir",
+  "@verseSheetTafsirTab": {
+    "description": "Tafsir tab in verse action sheet"
+  },
+  "verseSheetTranslationTab": "Translation",
+  "@verseSheetTranslationTab": {
+    "description": "Translation tab in verse action sheet"
+  },
+  "verseSheetWordByWordTab": "Word by Word",
+  "@verseSheetWordByWordTab": {
+    "description": "Word by word tab in verse action sheet"
+  },
+  "verseSheetBookmarkNoteTab": "Bookmark & Note",
+  "@verseSheetBookmarkNoteTab": {
+    "description": "Bookmark and note tab in verse action sheet"
+  },
+  "verseSheetSelectTafsir": "Select Tafsir",
+  "@verseSheetSelectTafsir": {
+    "description": "Dropdown label for selecting Tafsir"
+  },
+  "verseSheetSelectTranslation": "Select Translation",
+  "@verseSheetSelectTranslation": {
+    "description": "Dropdown label for selecting Translation"
+  },
+  "verseSheetBookmarkColorLabel": "Bookmark Color",
+  "@verseSheetBookmarkColorLabel": {
+    "description": "Label for bookmark color picker"
+  },
+  "verseSheetRemoveBookmark": "Remove Bookmark",
+  "@verseSheetRemoveBookmark": {
+    "description": "Action to remove bookmark"
+  },
+  "verseSheetNoteLabel": "Personal Reflection Note",
+  "@verseSheetNoteLabel": {
+    "description": "Label for verse note text field"
+  },
+  "verseSheetNoteHint": "Write your personal note on this verse...",
+  "@verseSheetNoteHint": {
+    "description": "Hint for verse note text field"
+  },
+  "verseSheetSaveNote": "Save Note",
+  "@verseSheetSaveNote": {
+    "description": "Button to save verse note"
+  },
+  "verseSheetShareText": "Share Text",
+  "@verseSheetShareText": {
+    "description": "Button to share verse as text with credit line"
+  },
+  "verseSheetShareImage": "Share Image",
+  "@verseSheetShareImage": {
+    "description": "Button to share verse as image card with credit line"
+  },
+  "verseShareCreditLine": "Source: King Fahd Glorious Quran Printing Complex via Quran Foundation (quran.com) — Shared via Qandil",
+  "@verseShareCreditLine": {
+    "description": "Mandatory attribution credit line included when sharing a verse"
+  },
+  "audioModeVerseByVerse": "Verse by Verse",
+  "@audioModeVerseByVerse": {
+    "description": "Verse by verse audio playback mode"
+  },
+  "audioModeFullSurah": "Full Surah",
+  "@audioModeFullSurah": {
+    "description": "Full surah continuous audio playback mode"
+  },
+  "audioSelectReciterTitle": "Select Reciter",
+  "@audioSelectReciterTitle": {
+    "description": "Title of reciter picker sheet"
+  },
+  "audioEgyptianReciterBadge": "Egyptian Qari",
+  "@audioEgyptianReciterBadge": {
+    "description": "Badge shown next to prioritized Egyptian reciters"
+  },
+  "audioRepeatTitle": "Repeat Verse or Range",
+  "@audioRepeatTitle": {
+    "description": "Title of repeat range dialog"
+  },
+  "audioRepeatEnable": "Enable Repeat",
+  "@audioRepeatEnable": {
+    "description": "Toggle for enabling verse/range repeat"
+  },
+  "audioRepeatStartAyah": "From Ayah",
+  "@audioRepeatStartAyah": {
+    "description": "Start ayah input label"
+  },
+  "audioRepeatEndAyah": "To Ayah",
+  "@audioRepeatEndAyah": {
+    "description": "End ayah input label"
+  },
+  "audioRepeatCountLabel": "Repeat Count",
+  "@audioRepeatCountLabel": {
+    "description": "Label for number of times to repeat"
+  },
+  "audioContinueNextSurah": "Continue to Next Surah Automatically",
+  "@audioContinueNextSurah": {
+    "description": "Toggle to auto-advance to next surah"
+  },
+  "audioApplyAction": "Apply",
+  "@audioApplyAction": {
+    "description": "Confirm button for audio repeat settings"
+  },
+  "audioSleepTimerTitle": "Sleep Timer",
+  "@audioSleepTimerTitle": {
+    "description": "Title of sleep timer sheet"
+  },
+  "audioSleepTimerOff": "Off",
+  "@audioSleepTimerOff": {
+    "description": "Disable sleep timer option"
+  },
+  "audioSleepTimerMinutes": "{minutes} min",
+  "@audioSleepTimerMinutes": {
+    "description": "Sleep timer duration in minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "audioDownloadsTitle": "Offline Audio & Storage",
+  "@audioDownloadsTitle": {
+    "description": "Title for Offline Audio Downloads and Storage Usage screen"
+  },
+  "audioStorageUsedLabel": "App-Private Storage Used: {sizeText}",
+  "@audioStorageUsedLabel": {
+    "description": "Total disk storage used by offline recitations",
+    "placeholders": {
+      "sizeText": {
+        "type": "String"
+      }
+    }
+  },
+  "audioReciterCreditBanner": "Recitations provided via Quran Foundation (quran.com). Active Reciter: {reciterName}",
+  "@audioReciterCreditBanner": {
+    "description": "Explicit reciter credit banner on the offline downloads screen",
+    "placeholders": {
+      "reciterName": {
+        "type": "String"
+      }
+    }
+  },
+  "audioDownloadSurahAction": "Download for Offline Use",
+  "@audioDownloadSurahAction": {
+    "description": "Tooltip/action to download a surah for offline listening"
+  },
+  "audioPauseDownloadAction": "Pause",
+  "@audioPauseDownloadAction": {
+    "description": "Pause active audio download"
+  },
+  "audioResumeDownloadAction": "Resume",
+  "@audioResumeDownloadAction": {
+    "description": "Resume paused audio download"
+  },
+  "audioDeleteDownloadAction": "Delete",
+  "@audioDeleteDownloadAction": {
+    "description": "Delete downloaded offline audio"
+  },
+  "audioDownloadedBadge": "Available Offline",
+  "@audioDownloadedBadge": {
+    "description": "Status label for completed offline audio download"
+  },
+  "prayerTabTimes": "Prayer Times",
+  "@prayerTabTimes": {
+    "description": "Prayer times sub-tab label"
+  },
+  "prayerTabQibla": "Qibla",
+  "@prayerTabQibla": {
+    "description": "Qibla compass sub-tab label"
+  },
+  "prayerTabHijri": "Hijri Calendar",
+  "@prayerTabHijri": {
+    "description": "Hijri calendar sub-tab label"
+  },
+  "prayerScheduleToday": "Today",
+  "@prayerScheduleToday": {
+    "description": "Today's prayer schedule filter"
+  },
+  "prayerScheduleTomorrow": "Tomorrow",
+  "@prayerScheduleTomorrow": {
+    "description": "Tomorrow's prayer schedule filter"
+  },
+  "prayerScheduleThirtyDays": "30-Day List",
+  "@prayerScheduleThirtyDays": {
+    "description": "30-day prayer schedule list filter"
+  },
+  "prayerFajr": "Fajr",
+  "@prayerFajr": {
+    "description": "Fajr prayer name"
+  },
+  "prayerSunrise": "Sunrise",
+  "@prayerSunrise": {
+    "description": "Sunrise time label"
+  },
+  "prayerDhuhr": "Dhuhr",
+  "@prayerDhuhr": {
+    "description": "Dhuhr prayer name"
+  },
+  "prayerAsr": "Asr",
+  "@prayerAsr": {
+    "description": "Asr prayer name"
+  },
+  "prayerMaghrib": "Maghrib",
+  "@prayerMaghrib": {
+    "description": "Maghrib prayer name"
+  },
+  "prayerIsha": "Isha",
+  "@prayerIsha": {
+    "description": "Isha prayer name"
+  },
+  "prayerNextCountdownLabel": "{prayerName} in {countdown}",
+  "@prayerNextCountdownLabel": {
+    "description": "Next prayer and live countdown label",
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      },
+      "countdown": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerUseGpsAction": "Detect GPS Location",
+  "@prayerUseGpsAction": {
+    "description": "Action to request foreground GPS location"
+  },
+  "prayerManualCitySearchTitle": "Select City Manually",
+  "@prayerManualCitySearchTitle": {
+    "description": "Title of manual city search fallback sheet"
+  },
+  "prayerManualCitySearchHint": "Search city (e.g. Cairo, Alexandria, Makkah)...",
+  "@prayerManualCitySearchHint": {
+    "description": "Search input hint for manual city search"
+  },
+  "prayerCalculationSettingsTitle": "Prayer Calculation Options",
+  "@prayerCalculationSettingsTitle": {
+    "description": "Title of prayer calculation options sheet"
+  },
+  "prayerAsrSchoolLabel": "Asr Juristic Method",
+  "@prayerAsrSchoolLabel": {
+    "description": "Label for Asr juristic option"
+  },
+  "prayerAsrShafi": "Standard (Shafi'i, Maliki, Hanbali)",
+  "@prayerAsrShafi": {
+    "description": "Standard Shafi Asr shadow factor 1"
+  },
+  "prayerAsrHanafi": "Hanafi",
+  "@prayerAsrHanafi": {
+    "description": "Hanafi Asr shadow factor 2"
+  },
+  "prayerHighLatitudeRuleLabel": "High-Latitude Rule",
+  "@prayerHighLatitudeRuleLabel": {
+    "description": "Label for high-latitude calculation rule"
+  },
+  "highLatMiddleOfNight": "Middle of the Night",
+  "@highLatMiddleOfNight": {
+    "description": "Middle of the night rule"
+  },
+  "highLatSeventhOfNight": "Seventh of the Night",
+  "@highLatSeventhOfNight": {
+    "description": "One-seventh of the night rule"
+  },
+  "highLatTwilightAngle": "Twilight Angle",
+  "@highLatTwilightAngle": {
+    "description": "Twilight angle rule"
+  },
+  "prayerManualAdjustmentsSection": "Manual Minute Adjustments (-30 to +30 min)",
+  "@prayerManualAdjustmentsSection": {
+    "description": "Section title for manual minute adjustments per prayer"
+  },
+  "qiblaBearingLabel": "Qibla Bearing: {bearing}",
+  "@qiblaBearingLabel": {
+    "description": "Qibla direction in degrees from North",
+    "placeholders": {
+      "bearing": {
+        "type": "String"
+      }
+    }
+  },
+  "qiblaAlignedStatus": "Aligned with Qibla",
+  "@qiblaAlignedStatus": {
+    "description": "Badge shown when phone points directly toward the Kaaba"
+  },
+  "qiblaCalibrationHint": "Calibration Tip: Move your phone in a figure-8 motion away from metal objects or magnetic cases.",
+  "@qiblaCalibrationHint": {
+    "description": "Compass calibration instruction"
+  },
+  "qiblaLowAccuracyWarning": "Low compass sensor accuracy detected. Please calibrate your device by tilting it in a figure-8 pattern.",
+  "@qiblaLowAccuracyWarning": {
+    "description": "Warning banner when compass interference is high"
+  },
+  "qiblaNoSensorFallbackTitle": "Static Qibla Bearing (No Compass Sensor)",
+  "@qiblaNoSensorFallbackTitle": {
+    "description": "Title shown when device lacks a magnetometer sensor"
+  },
+  "qiblaNoSensorFallbackBody": "Your device does not report live compass sensor headings. Face {bearing} clockwise from True North.",
+  "@qiblaNoSensorFallbackBody": {
+    "description": "Static bearing guidance when compass sensor is absent",
+    "placeholders": {
+      "bearing": {
+        "type": "String"
+      }
+    }
+  },
+  "hijriAdjustmentLabel": "Hijri Moon-Sighting Adjustment (Days)",
+  "@hijriAdjustmentLabel": {
+    "description": "Label for -2 to +2 Hijri day adjustment"
+  },
+  "hijriAdjustmentSubtitle": "Adjust Umm al-Qura Hijri date by -2 to +2 days to match local moon sighting.",
+  "@hijriAdjustmentSubtitle": {
+    "description": "Explanation of Hijri day adjustment"
+  },
+  "islamicOccasionsTitle": "Islamic Occasions",
+  "@islamicOccasionsTitle": {
+    "description": "Section heading for Islamic occasions on Hijri calendar"
+  },
+  "notifSettingsTitle": "Notifications & Reminders",
+  "@notifSettingsTitle": {
+    "description": "Title of Notification Settings screen"
+  },
+  "notifConfigureAction": "Configure Prayer Alerts, Reminders & Health",
+  "@notifConfigureAction": {
+    "description": "Button in Settings to open Notification Settings screen"
+  },
+  "notifMissingAdhanAssetBanner": "Custom Adhan audio files (assets/audio/adhan.mp3) are not yet bundled. Using the system default notification sound until Adhan audio files are added.",
+  "@notifMissingAdhanAssetBanner": {
+    "description": "Notice when custom Adhan audio files are missing from assets"
+  },
+  "notifPerPrayerSectionTitle": "Five Daily Prayer Alerts",
+  "@notifPerPrayerSectionTitle": {
+    "description": "Section heading for per-prayer alerts"
+  },
+  "notifAtPrayerTime": "At Prayer Time",
+  "@notifAtPrayerTime": {
+    "description": "0 minutes before prayer option"
+  },
+  "notifMinutesBefore": "{minutes} min before",
+  "@notifMinutesBefore": {
+    "description": "Minutes before prayer option",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifSoundAdhan": "Adhan / Default Sound",
+  "@notifSoundAdhan": {
+    "description": "Sound enabled option for prayer alert"
+  },
+  "notifSoundSilent": "Silent",
+  "@notifSoundSilent": {
+    "description": "Silent option for prayer alert"
+  },
+  "notifWirdReminderTitle": "Daily Quran Wird Reminder",
+  "@notifWirdReminderTitle": {
+    "description": "Daily wird reminder toggle title"
+  },
+  "notifFridayReminderTitle": "Friday Reminder (Surah Al-Kahf)",
+  "@notifFridayReminderTitle": {
+    "description": "Friday reminder toggle title"
+  },
+  "notifTasbihReminderTitle": "Daily Tasbih Reminder",
+  "@notifTasbihReminderTitle": {
+    "description": "Tasbih reminder toggle title"
+  },
+  "notifMorningAdhkarReminderTitle": "Morning Adhkar Reminder",
+  "@notifMorningAdhkarReminderTitle": {
+    "description": "Morning Adhkar reminder toggle title"
+  },
+  "notifEveningAdhkarReminderTitle": "Evening Adhkar Reminder",
+  "@notifEveningAdhkarReminderTitle": {
+    "description": "Evening Adhkar reminder toggle title"
+  },
+  "notifHealthTitle": "Notification Health & Status",
+  "@notifHealthTitle": {
+    "description": "Title of Notification Health screen"
+  },
+  "notifHealthPermissionLabel": "Notifications Permission (Android 13+ / iOS)",
+  "@notifHealthPermissionLabel": {
+    "description": "Label for notifications permission status"
+  },
+  "notifHealthExactAlarmLabel": "Exact Alarms Access (Android 14+ SCHEDULE_EXACT_ALARM)",
+  "@notifHealthExactAlarmLabel": {
+    "description": "Label for exact alarm permission status"
+  },
+  "notifHealthStatusGranted": "Granted",
+  "@notifHealthStatusGranted": {
+    "description": "Permission granted status badge"
+  },
+  "notifHealthStatusRequired": "Action Needed",
+  "@notifHealthStatusRequired": {
+    "description": "Permission missing status badge"
+  },
+  "notifHealthGrantAction": "Grant / Open Settings",
+  "@notifHealthGrantAction": {
+    "description": "Button to request permission or deep-link to system settings"
+  },
+  "notifHealthBudgetLabel": "Scheduled Pending Items (7-Day Rolling Window)",
+  "@notifHealthBudgetLabel": {
+    "description": "Label for number of pending scheduled items"
+  },
+  "notifHealthBudgetValue": "{count} / {maxBudget} budgeted (iOS max 64)",
+  "@notifHealthBudgetValue": {
+    "description": "Scheduled count vs iOS 64 limit",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "maxBudget": {
+        "type": "int"
+      }
+    }
+  },
+  "notifHealthNextThreeTitle": "Next 3 Scheduled Times",
+  "@notifHealthNextThreeTitle": {
+    "description": "Section title for next 3 scheduled notifications"
+  },
+  "notifHealthNoScheduled": "No upcoming notifications scheduled.",
+  "@notifHealthNoScheduled": {
+    "description": "Empty state when no notifications are scheduled"
+  },
+  "batteryHelpTitle": "Battery Optimization Help",
+  "@batteryHelpTitle": {
+    "description": "Title of OEM Battery Optimization Help screen"
+  },
+  "batteryHelpIntro": "Some phone manufacturers restrict background alarms after the app is closed. Follow the steps for your device brand below so prayer alerts always fire on time:",
+  "@batteryHelpIntro": {
+    "description": "Introduction text on Battery Optimization Help screen"
+  },
+  "batteryHelpSamsungTitle": "Samsung (One UI)",
+  "@batteryHelpSamsungTitle": {
+    "description": "Samsung brand heading"
+  },
+  "batteryHelpSamsungBody": "Open Settings → Apps → Qandil → Battery → Select 'Unrestricted'. Also ensure Qandil is not in 'Sleeping apps' under Device Care.",
+  "@batteryHelpSamsungBody": {
+    "description": "Samsung instructions"
+  },
+  "batteryHelpXiaomiTitle": "Xiaomi / Redmi / POCO (MIUI & HyperOS)",
+  "@batteryHelpXiaomiTitle": {
+    "description": "Xiaomi brand heading"
+  },
+  "batteryHelpXiaomiBody": "Open Settings → Apps → Manage apps → Qandil → Enable 'Autostart', then tap Battery saver and select 'No restrictions'.",
+  "@batteryHelpXiaomiBody": {
+    "description": "Xiaomi instructions"
+  },
+  "batteryHelpHuaweiTitle": "Huawei / Honor (EMUI)",
+  "@batteryHelpHuaweiTitle": {
+    "description": "Huawei brand heading"
+  },
+  "batteryHelpHuaweiBody": "Open Settings → Battery → App launch → Find Qandil → Turn off 'Manage automatically' and enable Auto-launch, Secondary launch, and Run in background.",
+  "@batteryHelpHuaweiBody": {
+    "description": "Huawei instructions"
+  },
+  "batteryHelpOnePlusOppoTitle": "OnePlus / Oppo / Realme (OxygenOS & ColorOS)",
+  "@batteryHelpOnePlusOppoTitle": {
+    "description": "OnePlus/Oppo/Realme brand heading"
+  },
+  "batteryHelpOnePlusOppoBody": "Open Settings → Apps → App Management → Qandil → Battery Usage → Enable 'Allow background activity' and 'Allow auto launch'.",
+  "@batteryHelpOnePlusOppoBody": {
+    "description": "OnePlus/Oppo/Realme instructions"
+  },
+  "tasbihTabCounter": "Tasbih Counter",
+  "@tasbihTabCounter": {
+    "description": "Counter tab label on Tasbih screen"
+  },
+  "tasbihTabStats": "Statistics",
+  "@tasbihTabStats": {
+    "description": "Statistics tab label on Tasbih screen"
+  },
+  "tasbihSelectDhikrLabel": "Active Dhikr",
+  "@tasbihSelectDhikrLabel": {
+    "description": "Label for dhikr picker"
+  },
+  "tasbihAddCustomDhikrTitle": "Add Custom Dhikr Label",
+  "@tasbihAddCustomDhikrTitle": {
+    "description": "Dialog title for typing a custom dhikr label"
+  },
+  "tasbihAddCustomDhikrHint": "Type your custom dhikr label...",
+  "@tasbihAddCustomDhikrHint": {
+    "description": "Input hint for custom dhikr label"
+  },
+  "tasbihTargetPresetLabel": "Target",
+  "@tasbihTargetPresetLabel": {
+    "description": "Label for target preset chips (33, 99, 100, Custom)"
+  },
+  "tasbihCustomTargetTitle": "Custom Target Count",
+  "@tasbihCustomTargetTitle": {
+    "description": "Dialog title for custom target count"
+  },
+  "tasbihCustomTargetHint": "Enter target count (e.g. 500)",
+  "@tasbihCustomTargetHint": {
+    "description": "Input hint for custom target count"
+  },
+  "tasbihHapticsTooltip": "Toggle Haptic Vibration",
+  "@tasbihHapticsTooltip": {
+    "description": "Tooltip for haptics toggle"
+  },
+  "tasbihTapPrompt": "Tap anywhere inside the circle to count",
+  "@tasbihTapPrompt": {
+    "description": "Instruction inside large tap area"
+  },
+  "tasbihCompletedRoundsLabel": "Rounds: {rounds} • Today: {todayTotal}",
+  "@tasbihCompletedRoundsLabel": {
+    "description": "Shows completed laps in current session and today's total",
+    "placeholders": {
+      "rounds": {
+        "type": "int"
+      },
+      "todayTotal": {
+        "type": "int"
+      }
+    }
+  },
+  "tasbihUndoAction": "Undo",
+  "@tasbihUndoAction": {
+    "description": "Undo last tasbih tap"
+  },
+  "tasbihResetAction": "Reset Lap",
+  "@tasbihResetAction": {
+    "description": "Reset current session lap counter"
+  },
+  "tasbihSaveSessionAction": "Save Session",
+  "@tasbihSaveSessionAction": {
+    "description": "Save and finish current session lap"
+  },
+  "tasbihPeriodToday": "Today",
+  "@tasbihPeriodToday": {
+    "description": "Today filter on stats screen"
+  },
+  "tasbihPeriodSevenDays": "7 Days",
+  "@tasbihPeriodSevenDays": {
+    "description": "7 days filter on stats screen"
+  },
+  "tasbihPeriodThirtyDays": "30 Days",
+  "@tasbihPeriodThirtyDays": {
+    "description": "30 days filter on stats screen"
+  },
+  "tasbihPeriodAllTime": "All Time",
+  "@tasbihPeriodAllTime": {
+    "description": "All time filter on stats screen"
+  },
+  "tasbihCurrentStreakLabel": "Current Streak",
+  "@tasbihCurrentStreakLabel": {
+    "description": "Current daily streak metric card title"
+  },
+  "tasbihBestStreakLabel": "Best Streak",
+  "@tasbihBestStreakLabel": {
+    "description": "Best daily streak metric card title"
+  },
+  "tasbihPerDhikrBreakdownTitle": "Per-Dhikr Breakdown",
+  "@tasbihPerDhikrBreakdownTitle": {
+    "description": "Section title for per-dhikr breakdown"
+  },
+  "tasbihEmptyStatsMessage": "No tasbih counts recorded yet. Start tapping on the Counter tab to build your daily streak.",
+  "@tasbihEmptyStatsMessage": {
+    "description": "Calm empty state on Tasbih stats screen"
+  },
+  "tasbihExportJsonAction": "Export Stats as JSON",
+  "@tasbihExportJsonAction": {
+    "description": "Button to export tasbih stats as JSON via share sheet"
+  },
+  "prayerShellTitle": "Prayer Times & Qibla",
+  "@prayerShellTitle": {
+    "description": "Title for Prayer tab shell"
+  },
+  "prayerShellDescription": "On-device prayer calculations, Qibla compass, and Umm al-Qura Hijri calendar.",
+  "@prayerShellDescription": {
+    "description": "Description on Prayer tab shell"
+  },
+  "dhikrShellTitle": "Adhkar & Tasbih",
+  "@dhikrShellTitle": {
+    "description": "Title for Dhikr tab shell"
+  },
+  "dhikrShellDescription": "Verified morning and evening adhkar, prophetic duas, and tasbih counter with statistics.",
+  "@dhikrShellDescription": {
+    "description": "Description on Dhikr tab shell"
+  },
+  "settingsTitle": "Settings & More",
+  "@settingsTitle": {
+    "description": "Title for Settings/More screen"
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language setting label"
+  },
+  "languageArabic": "العربية",
+  "@languageArabic": {
+    "description": "Arabic language option"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language option"
+  },
+  "settingsTheme": "Appearance",
+  "@settingsTheme": {
+    "description": "Theme mode setting label"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "Follow system theme option"
+  },
+  "themeLight": "Light (Ivory)",
+  "@themeLight": {
+    "description": "Light theme option"
+  },
+  "themeDark": "Dark (Night)",
+  "@themeDark": {
+    "description": "Dark theme option"
+  },
+  "settingsTextSize": "UI Text Size",
+  "@settingsTextSize": {
+    "description": "Text size scaling setting label"
+  },
+  "settingsTextSizePreview": "Read, listen and keep your daily wird.",
+  "@settingsTextSizePreview": {
+    "description": "Sample preview text for text size scaling"
+  },
+  "settingsPrayerMethod": "Prayer Calculation Method",
+  "@settingsPrayerMethod": {
+    "description": "Prayer calculation method setting label"
+  },
+  "prayerMethodEgyptian": "Egyptian General Authority of Survey",
+  "@prayerMethodEgyptian": {
+    "description": "Egyptian General Authority calculation method"
+  },
+  "prayerMethodUmmAlQura": "Umm al-Qura University, Makkah",
+  "@prayerMethodUmmAlQura": {
+    "description": "Umm al-Qura calculation method"
+  },
+  "prayerMethodMuslimWorldLeague": "Muslim World League",
+  "@prayerMethodMuslimWorldLeague": {
+    "description": "Muslim World League calculation method"
+  },
+  "prayerMethodKarachi": "University of Islamic Sciences, Karachi",
+  "@prayerMethodKarachi": {
+    "description": "Karachi calculation method"
+  },
+  "prayerMethodNorthAmerica": "ISNA (North America)",
+  "@prayerMethodNorthAmerica": {
+    "description": "North America calculation method"
+  },
+  "settingsNotifications": "Prayer & Wird Reminders",
+  "@settingsNotifications": {
+    "description": "Notifications toggle label"
+  },
+  "settingsNotificationsSubtitle": "Receive local reminders for prayers, daily wird, and adhkar.",
+  "@settingsNotificationsSubtitle": {
+    "description": "Notifications toggle subtitle"
+  },
+  "settingsAboutCredits": "About & Credits",
+  "@settingsAboutCredits": {
+    "description": "About and Credits screen navigation label"
+  },
+  "settingsAboutCreditsSubtitle": "Data sources, Quran Foundation attribution, fonts, and open-source licenses.",
+  "@settingsAboutCreditsSubtitle": {
+    "description": "Subtitle for About and Credits row"
+  },
+  "creditsTitle": "About & Credits",
+  "@creditsTitle": {
+    "description": "Title of About and Credits screen"
+  },
+  "creditsContentIntegrityTitle": "Content Integrity Pledge",
+  "@creditsContentIntegrityTitle": {
+    "description": "Section title for Content Integrity on Credits screen"
+  },
+  "creditsContentIntegrityBody": "Qandil never generates, alters, normalizes, or machine-translates Quranic text, tafsir, translations, adhkar, or duas. All religious content is loaded unaltered from verified scholarly sources.",
+  "@creditsContentIntegrityBody": {
+    "description": "Explanation of Qandil content integrity rules"
+  },
+  "creditsQuranSourceTitle": "Quran Text, Tafsir, Translations & Audio",
+  "@creditsQuranSourceTitle": {
+    "description": "Heading for Quran Foundation credit"
+  },
+  "creditsQuranSourceBody": "Provided by Quran Foundation (quran.com / api-docs.quran.com). Default Arabic Tafsir: Al-Tafsir Al-Muyassar (King Fahd Glorious Quran Printing Complex). Default English Translation: The Clear Quran (Dr. Mustafa Khattab).",
+  "@creditsQuranSourceBody": {
+    "description": "Details for Quran Foundation credit"
+  },
+  "creditsAdhkarSourceTitle": "Morning & Evening Adhkar and Duas",
+  "@creditsAdhkarSourceTitle": {
+    "description": "Title for Adhkar source credit card"
+  },
+  "creditsAdhkarSourceBody": "Morning and evening adhkar from Seen-Arabic/Morning-And-Evening-Adhkar-DB (MIT License), based on Hisn al-Muslim by Sa'id bin Ali bin Wahf al-Qahtani.",
+  "@creditsAdhkarSourceBody": {
+    "description": "Description of Adhkar content sources"
+  },
+  "creditsFontsTitle": "Typography & Mushaf Script",
+  "@creditsFontsTitle": {
+    "description": "Heading for fonts credit"
+  },
+  "creditsFontsBody": "Quranic script rendered in KFGQPC Uthmanic Script Hafs Ver 18 (King Fahd Glorious Quran Printing Complex via Quran Foundation). Headings and brand wordmark set in Reem Kufi (by Khaled Hosny, SIL Open Font License 1.1). User interface set in IBM Plex Sans Arabic (by IBM Corp., SIL Open Font License 1.1).",
+  "@creditsFontsBody": {
+    "description": "Details for bundled fonts credit"
+  },
+  "creditsOpenSourceLicenses": "View Open-Source Licenses",
+  "@creditsOpenSourceLicenses": {
+    "description": "Button to open Flutter LicensePage"
+  },
+  "tasbihCount": "{count, plural, =0{No tasbih today} =1{1 tasbih} other{{count} tasbihs}}",
+  "@tasbihCount": {
+    "description": "ICU plural count for tasbihs",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "verseCount": "{count, plural, =0{No verses} =1{1 verse} other{{count} verses}}",
+  "@verseCount": {
+    "description": "ICU plural count for Quran verses",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pageCount": "{count, plural, =0{No pages} =1{1 page} other{{count} pages}}",
+  "@pageCount": {
+    "description": "ICU plural count for Mushaf pages",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dayStreakCount": "{count, plural, =0{No streak yet} =1{1 day streak} other{{count} days streak}}",
+  "@dayStreakCount": {
+    "description": "ICU plural count for daily streak",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adhkarTabTitle": "Adhkar & Duas",
+  "@adhkarTabTitle": {
+    "description": "Title for Adhkar tab in hub"
+  },
+  "tasbihTabTitle": "Tasbih Counter",
+  "@tasbihTabTitle": {
+    "description": "Title for Tasbih tab in hub"
+  },
+  "morningAdhkarBannerTitle": "Morning Adhkar",
+  "@morningAdhkarBannerTitle": {
+    "description": "Morning banner title"
+  },
+  "morningAdhkarBannerSubtitle": "Begin your day with remembrance and serenity",
+  "@morningAdhkarBannerSubtitle": {
+    "description": "Morning banner subtitle"
+  },
+  "eveningAdhkarBannerTitle": "Evening Adhkar",
+  "@eveningAdhkarBannerTitle": {
+    "description": "Evening banner title"
+  },
+  "eveningAdhkarBannerSubtitle": "End your day with peace and protection",
+  "@eveningAdhkarBannerSubtitle": {
+    "description": "Evening banner subtitle"
+  },
+  "readAdhkarAction": "Read Adhkar",
+  "@readAdhkarAction": {
+    "description": "Action button to open reader"
+  },
+  "categoryPendingNotice": "Pending import",
+  "@categoryPendingNotice": {
+    "description": "Badge when category is not yet imported"
+  },
+  "categoryEmptyTitle": "No Adhkar in this category yet",
+  "@categoryEmptyTitle": {
+    "description": "Empty state title"
+  },
+  "categoryEmptyDescription": "This category is currently pending verification and import from authentic sources.",
+  "@categoryEmptyDescription": {
+    "description": "Empty state description"
+  },
+  "adhkarProgressCompleted": "{completed} of {total} completed",
+  "@adhkarProgressCompleted": {
+    "description": "Category progress label",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "adhkarItemCounter": "{current} of {total}",
+  "@adhkarItemCounter": {
+    "description": "Reader counter badge",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "adhkarSourceLabel": "Source",
+  "@adhkarSourceLabel": {
+    "description": "Source label"
+  },
+  "adhkarFadlLabel": "Virtue",
+  "@adhkarFadlLabel": {
+    "description": "Virtue label"
+  },
+  "adhkarMarkCompletedAction": "Mark Read",
+  "@adhkarMarkCompletedAction": {
+    "description": "Mark completed action"
+  },
+  "adhkarResetCategoryAction": "Reset Today's Progress",
+  "@adhkarResetCategoryAction": {
+    "description": "Reset category action"
+  },
+  "adhkarResetCategoryConfirm": "Do you want to reset today's progress for this category?",
+  "@adhkarResetCategoryConfirm": {
+    "description": "Confirm dialog for resetting category"
+  },
+  "adhkarFontSizeLabel": "Font Size",
+  "@adhkarFontSizeLabel": {
+    "description": "Font size adjustment label"
+  },
+  "adhkarShareCredit": "Qandil App — Light for your day",
+  "@adhkarShareCredit": {
+    "description": "Credit line when sharing adhkar"
+  },
+  "readingModeTitle": "Reading & Focus Mode",
+  "@readingModeTitle": {
+    "description": "Title for Phase 9 Reading Mode"
+  },
+  "readingModeActivePill": "Reading Mode Active — Tap to Exit",
+  "@readingModeActivePill": {
+    "description": "Dimmed floating pill shown while Reading Mode is active"
+  },
+  "readingModeToggleTooltip": "Toggle Reading Mode",
+  "@readingModeToggleTooltip": {
+    "description": "Tooltip for Reading Mode toggle button in Quran Reader"
+  },
+  "readingModeAutoStartLabel": "Start Reading Mode automatically",
+  "@readingModeAutoStartLabel": {
+    "description": "Setting toggle to auto-start Reading Mode when opening Quran Reader"
+  },
+  "readingModeAutoStartSubtitle": "Keep screen awake, dim UI chrome, and hold in-app reminders while reading.",
+  "@readingModeAutoStartSubtitle": {
+    "description": "Subtitle for auto-start Reading Mode"
+  },
+  "readingModeDndEnabledLabel": "Do Not Disturb while reading (Android)",
+  "@readingModeDndEnabledLabel": {
+    "description": "Toggle for optional Android DND during Reading Mode"
+  },
+  "readingModeDndEnabledSubtitle": "Saves your previous DND filter before reading and always restores it on exit or next launch.",
+  "@readingModeDndEnabledSubtitle": {
+    "description": "Subtitle explaining crash-safe DND restoration"
+  },
+  "readingModeDndFilterLabel": "Android Interruption Filter",
+  "@readingModeDndFilterLabel": {
+    "description": "Label for selecting which Android DND filter to apply"
+  },
+  "readingModeDndFilterPriorityTitle": "Priority & Adhan Allowed (Recommended)",
+  "@readingModeDndFilterPriorityTitle": {
+    "description": "Priority interruption filter option"
+  },
+  "readingModeDndFilterPrioritySubtitle": "Lets Qandil's Adhan, alarms, and priority contacts through while silencing general notifications.",
+  "@readingModeDndFilterPrioritySubtitle": {
+    "description": "Explanation of Priority filter and Adhan delivery"
+  },
+  "readingModeDndFilterAlarmsTitle": "Alarms & Adhan Only",
+  "@readingModeDndFilterAlarmsTitle": {
+    "description": "Alarms interruption filter option"
+  },
+  "readingModeDndFilterAlarmsSubtitle": "Blocks calls and messages; only lets system alarms and Qandil's alarm-category Adhan through.",
+  "@readingModeDndFilterAlarmsSubtitle": {
+    "description": "Explanation of Alarms filter and Adhan delivery"
+  },
+  "readingModeDndFilterNoneTitle": "Total Silence (Mutes Adhan & Alarms)",
+  "@readingModeDndFilterNoneTitle": {
+    "description": "Total silence interruption filter option"
+  },
+  "readingModeDndFilterNoneSubtitle": "Blocks all sounds and notifications, including Adhan and alarms.",
+  "@readingModeDndFilterNoneSubtitle": {
+    "description": "Explanation of Total Silence filter"
+  },
+  "readingModeAndroidPermissionTitle": "Notification Policy Access Required",
+  "@readingModeAndroidPermissionTitle": {
+    "description": "Title of Android DND permission explanation sheet"
+  },
+  "readingModeAndroidPermissionBody": "To enable Do Not Disturb while reading, Qandil needs Android Notification Policy access. Qandil saves your current filter before reading and always restores it on exit — never leaving your phone in DND silently.",
+  "@readingModeAndroidPermissionBody": {
+    "description": "Body of Android DND permission explanation sheet"
+  },
+  "readingModeOpenAndroidDndSettingsAction": "Open Notification Policy Settings",
+  "@readingModeOpenAndroidDndSettingsAction": {
+    "description": "Button to open Android Notification Policy settings"
+  },
+  "readingModeVerifyDndPermissionAction": "Verify & Enable Now",
+  "@readingModeVerifyDndPermissionAction": {
+    "description": "Button to verify permission after returning from Android settings"
+  },
+  "readingModeDndPermissionNotGrantedWarning": "Permission has not been granted in system settings yet.",
+  "@readingModeDndPermissionNotGrantedWarning": {
+    "description": "Warning shown when user taps verify but permission is still denied"
+  },
+  "readingModeIosFocusTipTitle": "iOS Focus Mode & Shortcuts Tip",
+  "@readingModeIosFocusTipTitle": {
+    "description": "Title of one-time iOS Focus tip sheet"
+  },
+  "readingModeIosFocusTipBody": "iOS does not allow apps to toggle Do Not Disturb programmatically. To enjoy distraction-free reading on iPhone:\n1. Open the Apple Shortcuts app > Automation.\n2. Create a Personal Automation: When 'Qandil' is Opened → Set Focus to 'Reading' (or Do Not Disturb) until you leave the app.",
+  "@readingModeIosFocusTipBody": {
+    "description": "One-time iOS Focus tip explanation"
+  },
+  "readingModeIosFocusTipButton": "How to set up iOS Focus Mode for Qandil",
+  "@readingModeIosFocusTipButton": {
+    "description": "Button in settings to view the iOS Focus tip"
+  },
+  "readingModeGotItAction": "Got It",
+  "@readingModeGotItAction": {
+    "description": "Dismiss button for tip sheet"
+  },
+  "readingModeHeldNotificationsToast": "{count} in-app reminder(s) were held while you were reading.",
+  "@readingModeHeldNotificationsToast": {
+    "description": "Toast shown when held notifications are flushed on exiting Reading Mode",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingSkipAction": "Skip",
+  "@onboardingSkipAction": {
+    "description": "Button to skip onboarding"
+  },
+  "onboardingNextAction": "Next",
+  "@onboardingNextAction": {
+    "description": "Button to advance to next onboarding slide"
+  },
+  "onboardingStartAction": "Begin with Qandil",
+  "@onboardingStartAction": {
+    "description": "Button on final onboarding slide"
+  },
+  "onboardingReadTitle": "Read with Calm & Reflection",
+  "@onboardingReadTitle": {
+    "description": "Onboarding slide 1 title (Read)"
+  },
+  "onboardingReadSubtitle": "Authentic Madani Uthmanic Mushaf script, scholarly tafsir, translations, word-by-word meanings, and distraction-free Reading Mode.",
+  "@onboardingReadSubtitle": {
+    "description": "Onboarding slide 1 description"
+  },
+  "onboardingListenTitle": "Listen to Renowned Reciters",
+  "@onboardingListenTitle": {
+    "description": "Onboarding slide 2 title (Listen)"
+  },
+  "onboardingListenSubtitle": "Beloved Egyptian and world Qaris with live verse highlighting, range repeat, and offline surah downloads.",
+  "@onboardingListenSubtitle": {
+    "description": "Onboarding slide 2 description"
+  },
+  "onboardingWirdTitle": "Keep Your Daily Wird",
+  "@onboardingWirdTitle": {
+    "description": "Onboarding slide 3 title (Daily Wird)"
+  },
+  "onboardingWirdSubtitle": "A gentle Khatmah planner, on-device prayer times and Qibla, verified morning and evening adhkar, and daily tasbih.",
+  "@onboardingWirdSubtitle": {
+    "description": "Onboarding slide 3 description"
+  },
+  "settingsReplayOnboarding": "Qandil Welcome Tour",
+  "@settingsReplayOnboarding": {
+    "description": "Button in Settings to view the 3-screen onboarding tour"
+  },
+  "settingsReplayOnboardingSubtitle": "View the 3-screen introduction to reading, listening, and keeping your daily wird.",
+  "@settingsReplayOnboardingSubtitle": {
+    "description": "Subtitle for welcome tour in Settings"
+  },
+  "homeGreetingMorning": "Good morning — light for your day",
+  "@homeGreetingMorning": {
+    "description": "Morning greeting on Home header"
+  },
+  "homeGreetingAfternoon": "Good afternoon — peace for your day",
+  "@homeGreetingAfternoon": {
+    "description": "Afternoon greeting on Home header"
+  },
+  "homeGreetingEvening": "Good evening — serenity for your night",
+  "@homeGreetingEvening": {
+    "description": "Evening greeting on Home header"
+  },
+  "homeMissingLocationPlaceholder": "Select your city on the Prayer screen to view prayer times and live countdown.",
+  "@homeMissingLocationPlaceholder": {
+    "description": "Friendly placeholder when location is missing"
+  },
+  "homeQuickTasbihAction": "Quick Tasbih (+1)",
+  "@homeQuickTasbihAction": {
+    "description": "Quick-start +1 tasbih counter button on Home Dhikr card"
+  },
+  "homeMorningAdhkarShortcut": "Morning Adhkar",
+  "@homeMorningAdhkarShortcut": {
+    "description": "Shortcut pill to Morning Adhkar on Home Dhikr card"
+  },
+  "homeEveningAdhkarShortcut": "Evening Adhkar",
+  "@homeEveningAdhkarShortcut": {
+    "description": "Shortcut pill to Evening Adhkar on Home Dhikr card"
+  },
+  "homeOpenVerseWithTafsirAction": "Read Verse & Tafsir",
+  "@homeOpenVerseWithTafsirAction": {
+    "description": "Action on Verse of the Day card to open verse with tafsir"
+  },
+  "hifzTitle": "Memorization & Review (Hifz)",
+  "@hifzTitle": {
+    "description": "Title for Phase 12 Hifz Hub"
+  },
+  "hifzTabPlan": "Plan & Queue",
+  "@hifzTabPlan": {
+    "description": "Hifz tab 1"
+  },
+  "hifzTabTest": "Test & Recite",
+  "@hifzTabTest": {
+    "description": "Hifz tab 2"
+  },
+  "hifzTabMistakes": "Weak Spots",
+  "@hifzTabMistakes": {
+    "description": "Hifz tab 3"
+  },
+  "hifzTabStats": "Stats & Teacher",
+  "@hifzTabStats": {
+    "description": "Hifz tab 4"
+  },
+  "hifzAddRangeTitle": "Add Memorized Verse Range",
+  "@hifzAddRangeTitle": {
+    "description": "Heading for adding a memorized verse range"
+  },
+  "hifzAddRangeAction": "Add Memorized Range",
+  "@hifzAddRangeAction": {
+    "description": "Button to add memorized range"
+  },
+  "hifzDailyGoalsTitle": "Daily Hifz & Review Goals",
+  "@hifzDailyGoalsTitle": {
+    "description": "Heading for Hifz daily goals"
+  },
+  "hifzNewVersesPerDayLabel": "New verses per day",
+  "@hifzNewVersesPerDayLabel": {
+    "description": "Label for new verses per day goal"
+  },
+  "hifzReviewsPerDayCapLabel": "Daily review queue cap",
+  "@hifzReviewsPerDayCapLabel": {
+    "description": "Label for daily review queue cap"
+  },
+  "hifzCatchUpModeLabel": "Catch-Up Mode (spread missed overdue reviews across days)",
+  "@hifzCatchUpModeLabel": {
+    "description": "Toggle for Catch-Up Mode in SM-2 scheduler"
+  },
+  "hifzDueQueueTitle": "Today's Due Review Queue",
+  "@hifzDueQueueTitle": {
+    "description": "Heading for daily review queue"
+  },
+  "hifzDueQueueEmpty": "No review ranges due right now. Add a memorized range or start a test session.",
+  "@hifzDueQueueEmpty": {
+    "description": "Empty state for daily review queue"
+  },
+  "hifzAudioHelperTitle": "Hifz Audio Loop Helper",
+  "@hifzAudioHelperTitle": {
+    "description": "Heading for Hifz audio loop helper"
+  },
+  "hifzAudioPauseGapLabel": "Pause gap to repeat after reciter (seconds)",
+  "@hifzAudioPauseGapLabel": {
+    "description": "Label for audio pause gap"
+  },
+  "hifzStartAudioLoopAction": "Loop Range with Reciter",
+  "@hifzStartAudioLoopAction": {
+    "description": "Button to start audio range loop"
+  },
+  "hifzTestModeByNumber": "Recite by Verse #",
+  "@hifzTestModeByNumber": {
+    "description": "Test mode 1"
+  },
+  "hifzTestModeNextVerse": "What's Next Verse?",
+  "@hifzTestModeNextVerse": {
+    "description": "Test mode 2"
+  },
+  "hifzTestModeMistakes": "Review My Mistakes",
+  "@hifzTestModeMistakes": {
+    "description": "Test mode 3"
+  },
+  "hifzRevealVerseAction": "Reveal Verse to Check",
+  "@hifzRevealVerseAction": {
+    "description": "Button to reveal hidden verse in test mode"
+  },
+  "hifzTapMistakeWordHint": "Tap any word you hesitated on (optional), then self-grade:",
+  "@hifzTapMistakeWordHint": {
+    "description": "Hint above words in revealed test mode"
+  },
+  "hifzGradePerfect": "Perfect",
+  "@hifzGradePerfect": {
+    "description": "Self-grade Perfect"
+  },
+  "hifzGradeHesitated": "Hesitated",
+  "@hifzGradeHesitated": {
+    "description": "Self-grade Hesitated"
+  },
+  "hifzGradeForgot": "Forgot",
+  "@hifzGradeForgot": {
+    "description": "Self-grade Forgot"
+  },
+  "hifzWeakSpotsTitle": "Weak Spots & Mistake Log",
+  "@hifzWeakSpotsTitle": {
+    "description": "Heading for weak spots tab"
+  },
+  "hifzWeakSpotsEmpty": "No mistakes logged yet. Verses graded Hesitated or Forgot will appear here.",
+  "@hifzWeakSpotsEmpty": {
+    "description": "Empty state for weak spots"
+  },
+  "hifzMutashabihatTitle": "Similar Verses (Mutashabihat — Verified Extension Point)",
+  "@hifzMutashabihatTitle": {
+    "description": "Heading for Mutashabihat extension point card"
+  },
+  "hifzMutashabihatNotice": "To preserve strict Quranic content integrity, Qandil never generates mutashabihat pairs automatically. Verified pairs will appear here once assets/data/mutashabihat.json is supplied.",
+  "@hifzMutashabihatNotice": {
+    "description": "Explanation of Mutashabihat extension point"
+  },
+  "hifzStatsMemorizedVerses": "Memorized Verses",
+  "@hifzStatsMemorizedVerses": {
+    "description": "Stats label for memorized verses"
+  },
+  "hifzStatsMemorizedPages": "Pages",
+  "@hifzStatsMemorizedPages": {
+    "description": "Stats label for memorized pages"
+  },
+  "hifzStatsMemorizedJuz": "Juz",
+  "@hifzStatsMemorizedJuz": {
+    "description": "Stats label for memorized juz"
+  },
+  "hifzStatsReviewStreak": "Review Streak",
+  "@hifzStatsReviewStreak": {
+    "description": "Stats label for review streak"
+  },
+  "hifzStatsWeeklyAccuracy": "7-Day Accuracy",
+  "@hifzStatsWeeklyAccuracy": {
+    "description": "Stats label for weekly accuracy"
+  },
+  "hifzStatsProjectedCompletion": "Projected Completion Date",
+  "@hifzStatsProjectedCompletion": {
+    "description": "Stats label for projected completion date"
+  },
+  "hifzTeacherExportAction": "Export Teacher Progress Report (JSON)",
+  "@hifzTeacherExportAction": {
+    "description": "Button to share Hifz progress report JSON"
+  },
+  "hifzHideModeTitle": "Hifz Reader Hide Mode",
+  "@hifzHideModeTitle": {
+    "description": "Title for Hifz hide mode picker in Quran Reader"
+  },
+  "hifzHideModeNone": "Normal Display (No Hiding)",
+  "@hifzHideModeNone": {
+    "description": "Hide mode none"
+  },
+  "hifzHideModeAll": "Hide All Words",
+  "@hifzHideModeAll": {
+    "description": "Hide mode hide all"
+  },
+  "hifzHideModeFirstWord": "Show Only First Word of Each Verse",
+  "@hifzHideModeFirstWord": {
+    "description": "Hide mode first word only"
+  },
+  "hifzHideModeRandom": "Hide Random % of Words",
+  "@hifzHideModeRandom": {
+    "description": "Hide mode random percent"
+  },
+  "hifzHideModeUntilTapped": "Hide Verse Until Tapped",
+  "@hifzHideModeUntilTapped": {
+    "description": "Hide mode hide until tapped"
+  },
+  "hifzHideModeWordByWord": "Reveal Word by Word on Tap",
+  "@hifzHideModeWordByWord": {
+    "description": "Hide mode reveal word by word"
+  },
+  "creditsRecitersTitle": "Quran Reciters & Audio Sources",
+  "@creditsRecitersTitle": {
+    "description": "Heading for reciters credit card"
+  },
+  "creditsRecitersBody": "Audio recitations are streamed and downloaded with permission via Quran Foundation (quran.com), featuring prioritized Egyptian Qaris: Sheikh Mahmoud Khalil Al-Husary (Murattal & Muallim), Sheikh AbdulBaset AbdulSamad (Mujawwad & Murattal), Sheikh Mohamed Siddiq al-Minshawi (Murattal & Mujawwad), Sheikh Mishari Rashid al-`Afasy, Sheikh Abdur-Rahman as-Sudais, Sheikh Sa`ud ash-Shuraym, Sheikh Saad al-Ghamdi, Sheikh Abu Bakr al-Shatri, and Sheikh Hani ar-Rifai.",
+  "@creditsRecitersBody": {
+    "description": "Details for reciters attribution"
+  },
+  "creditsTafsirTranslationsTitle": "Tafsir & Translations",
+  "@creditsTafsirTranslationsTitle": {
+    "description": "Heading for tafsir and translations credit card"
+  },
+  "creditsTafsirTranslationsBody": "Default Arabic Tafsir: Al-Tafsir Al-Muyassar (King Fahd Glorious Quran Printing Complex) and Tafsir Ibn Kathir via Quran Foundation API. English Translations: Saheeh International and The Clear Quran (Dr. Mustafa Khattab) via Quran Foundation API.",
+  "@creditsTafsirTranslationsBody": {
+    "description": "Details for tafsir and translations attribution"
+  },
+  "creditsPrayerHijriTitle": "Prayer Times, Qibla & Hijri Calendar",
+  "@creditsPrayerHijriTitle": {
+    "description": "Heading for prayer times and Hijri calendar credit card"
+  },
+  "creditsPrayerHijriBody": "Prayer times and Qibla bearing are computed 100% on-device using the adhan astronomical library (defaulting to the Egyptian General Authority of Survey). Hijri dates use the Umm al-Qura calendar (hijri_core) with a -2 to +2 day moon-sighting adjustment.",
+  "@creditsPrayerHijriBody": {
+    "description": "Details for prayer and Hijri calculations"
+  },
+  "creditsPrivacyTitle": "Privacy Policy & On-Device Guarantee",
+  "@creditsPrivacyTitle": {
+    "description": "Heading for privacy policy card on Credits screen"
+  },
+  "creditsPrivacyBody": "Qandil requires no account, displays zero ads, and includes zero analytics or tracking SDKs. Your foreground location is used solely on your device to calculate prayer times and Qibla direction and is never sent to any server. All personal worship data (bookmarks, notes, Khatmah, Hifz progress, and Tasbih stats) is stored locally on your device.",
+  "@creditsPrivacyBody": {
+    "description": "Privacy policy summary on Credits screen"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Button label to retry after failure"
+  },
+  "notFoundTitle": "Page Not Found",
+  "@notFoundTitle": {
+    "description": "Title for 404 page"
+  },
+  "notFoundMessage": "The page you are looking for does not exist.",
+  "@notFoundMessage": {
+    "description": "Message for 404 page"
+  },
+  "backToHome": "Back to Home",
+  "@backToHome": {
+    "description": "Button to navigate back to home screen"
+  }
+}

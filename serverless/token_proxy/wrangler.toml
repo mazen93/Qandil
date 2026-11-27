@@ -1,0 +1,15 @@
+name = "qandil-quran-token-proxy"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Pre-production (Surahs 1 and 2 only). Switch to "https://oauth2.quran.foundation" after production approval.
+QF_OAUTH_BASE_URL = "https://prelive-oauth2.quran.foundation"
+QF_SCOPE = "content"
+RATE_LIMIT_MAX_REQUESTS = "30"
+RATE_LIMIT_WINDOW_SECONDS = "60"
+
+# IMPORTANT: Never put QF_CLIENT_ID or QF_CLIENT_SECRET in wrangler.toml!
+# Set them using Wrangler secrets:
+#   npx wrangler secret put QF_CLIENT_ID
+#   npx wrangler secret put QF_CLIENT_SECRET
