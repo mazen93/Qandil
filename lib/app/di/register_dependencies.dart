@@ -223,7 +223,9 @@ Future<void> registerDependencies({
     getIt.registerFactory<AudioPlayerGateway>(() => audioPlayerGateway);
   } else if (!getIt.isRegistered<AudioPlayerGateway>()) {
     getIt.registerFactory<AudioPlayerGateway>(
-      QuranAudioPlayerService.new,
+      () => QuranAudioPlayerService(
+        adhanPlayer: getIt<AdhanPlayerService>(),
+      ),
     );
   }
 
