@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -362,6 +363,63 @@ class NotificationSettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              // ── DEV-ONLY: Test Adhan notification ──────────────────────
+              if (kDebugMode) ...[
+                const SizedBox(height: 24),
+                const Divider(),
+                const SizedBox(height: 8),
+                Text(
+                  '🔧 Developer Tools',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.orange,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                const SizedBox(height: 10),
+                FilledButton.icon(
+                  onPressed: () async {
+                    await notifService.triggerTestAdhanNotification(
+                      delay: const Duration(seconds: 3),
+                      title: 'Qandil — Test Adhan 🕌',
+                      body: 'الله أكبر • Testing Adhan sound (3s delay)',
+                    );
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                              'Test Adhan scheduled in 3 seconds — lock the screen!'),
+                          duration: Duration(seconds: 3),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.volume_up_rounded),
+                  label: const Text('Test Adhan (3 s delay)'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                OutlinedButton.icon(
+                  onPressed: () async {
+                    await notifService.triggerTestAdhanNotification(
+                      title: 'Qandil — Instant Adhan Test 🕌',
+                      body: 'الله أكبر • Instant test notification',
+                    );
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Instant Adhan notification fired!'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.notifications_active_rounded),
+                  label: const Text('Trigger Adhan Now'),
+                ),
+                const SizedBox(height: 16),
+              ],
             ],
           );
         },

@@ -24,6 +24,8 @@ abstract interface class LocalNotificationGateway {
   Future<void> cancelAll();
 
   Future<void> scheduleItem(PlannedNotificationItem item);
+
+  Future<void> showItemNow(PlannedNotificationItem item);
 }
 
 /// Production implementation of [LocalNotificationGateway] powered by `flutter_local_notifications` and `timezone`.
@@ -43,9 +45,9 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
       '@mipmap/ic_launcher',
     );
     const darwinSettings = DarwinInitializationSettings(
-      requestAlertPermission: false,
-      requestBadgePermission: false,
-      requestSoundPermission: false,
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
     );
     const initSettings = InitializationSettings(
       android: androidSettings,
@@ -68,14 +70,28 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
     if (androidImplementation == null) return;
 
     for (final channel in QandilNotificationChannel.values) {
+      final isPrayer = channel == QandilNotificationChannel.prayer;
       await androidImplementation.createNotificationChannel(
         AndroidNotificationChannel(
-          channel.id,
+          isPrayer ? 'qandil_prayer_adhan' : channel.id,
           channel.defaultName,
           importance: Importance.max,
           playSound: true,
+          sound: isPrayer
+              ? const RawResourceAndroidNotificationSound('adhan')
+              : null,
         ),
       );
+      if (isPrayer) {
+        await androidImplementation.createNotificationChannel(
+          const AndroidNotificationChannel(
+            'qandil_prayer_silent',
+            'Prayer Alerts (Silent)',
+            importance: Importance.high,
+            playSound: false,
+          ),
+        );
+      }
     }
   }
 
@@ -123,6 +139,11 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
         final android = _plugin.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>();
         return await android?.areNotificationsEnabled() ?? true;
+      } else if (Platform.isIOS) {
+        final ios = _plugin.resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>();
+        final permissions = await ios?.checkPermissions();
+        return permissions?.isEnabled ?? false;
       }
       return true;
     } catch (_) {
@@ -151,41 +172,72 @@ class FlutterLocalNotificationGateway implements LocalNotificationGateway {
     } catch (_) {}
   }
 
+  NotificationDetails _buildDetails(PlannedNotificationItem item) {
+    final isPrayerChannel = item.channel == QandilNotificationChannel.prayer;
+    final androidChannelId = isPrayerChannel
+        ? (item.playSound ? 'qandil_prayer_adhan' : 'qandil_prayer_silent')
+        : item.channel.id;
+    final androidDetails = AndroidNotificationDetails(
+      androidChannelId,
+      item.channel.defaultName,
+      importance: Importance.max,
+      priority: Priority.high,
+      playSound: item.playSound,
+      sound: isPrayerChannel && item.playSound
+          ? const RawResourceAndroidNotificationSound('adhan')
+          : null,
+      category: isPrayerChannel ? AndroidNotificationCategory.alarm : null,
+      audioAttributesUsage: isPrayerChannel
+          ? AudioAttributesUsage.alarm
+          : AudioAttributesUsage.notification,
+    );
+    final darwinDetails = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBanner: true,
+      presentList: true,
+      presentSound: item.playSound,
+      sound: isPrayerChannel && item.playSound ? 'adhan.caf' : null,
+      interruptionLevel: isPrayerChannel
+          ? InterruptionLevel.timeSensitive
+          : InterruptionLevel.active,
+    );
+
+    return NotificationDetails(
+      android: androidDetails,
+      iOS: darwinDetails,
+      macOS: darwinDetails,
+    );
+  }
+
   @override
   Future<void> scheduleItem(PlannedNotificationItem item) async {
     try {
       await initialize();
       final scheduledTz = tz.TZDateTime.from(item.scheduledAt, tz.local);
 
-      final isPrayerChannel = item.channel == QandilNotificationChannel.prayer;
-      final androidDetails = AndroidNotificationDetails(
-        item.channel.id,
-        item.channel.defaultName,
-        importance: Importance.max,
-        priority: Priority.high,
-        playSound: item.playSound,
-        category: isPrayerChannel ? AndroidNotificationCategory.alarm : null,
-        audioAttributesUsage: isPrayerChannel
-            ? AudioAttributesUsage.alarm
-            : AudioAttributesUsage.notification,
-      );
-      final darwinDetails = DarwinNotificationDetails(
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: item.playSound,
-      );
-
       await _plugin.zonedSchedule(
         id: item.id,
         title: item.title,
         body: item.body,
         scheduledDate: scheduledTz,
-        notificationDetails: NotificationDetails(
-          android: androidDetails,
-          iOS: darwinDetails,
-          macOS: darwinDetails,
-        ),
+        notificationDetails: _buildDetails(item),
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        payload: item.payload,
+      );
+    } catch (_) {
+      // Safe fallback in test environments without native alarm manager.
+    }
+  }
+
+  @override
+  Future<void> showItemNow(PlannedNotificationItem item) async {
+    try {
+      await initialize();
+      await _plugin.show(
+        id: item.id,
+        title: item.title,
+        body: item.body,
+        notificationDetails: _buildDetails(item),
         payload: item.payload,
       );
     } catch (_) {
@@ -252,6 +304,30 @@ class LocalNotificationService {
 
   Future<bool> requestExactAlarmPermission() {
     return _gateway.requestExactAlarmPermission();
+  }
+
+  /// Triggers a test Adhan notification immediately or after [delay] (for testing in dev).
+  Future<void> triggerTestAdhanNotification({
+    Duration delay = Duration.zero,
+    String title = 'Qandil — Test Adhan',
+    String body = 'Allahu Akbar • Testing Adhan notification & sound',
+  }) async {
+    await _gateway.initialize();
+    await requestNotificationsPermission();
+    final item = PlannedNotificationItem(
+      id: 999001,
+      channel: QandilNotificationChannel.prayer,
+      title: title,
+      body: body,
+      scheduledAt: _clock().add(delay),
+      playSound: true,
+      payload: 'test_adhan',
+    );
+    if (delay <= Duration.zero) {
+      await _gateway.showItemNow(item);
+    } else {
+      await _gateway.scheduleItem(item);
+    }
   }
 
   /// Builds the live [NotificationHealthStatus] for the Notification Health screen.

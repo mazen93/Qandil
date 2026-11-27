@@ -33,6 +33,11 @@ class FakeLocalNotificationGateway implements LocalNotificationGateway {
   Future<void> scheduleItem(PlannedNotificationItem item) async {
     scheduledItems.add(item);
   }
+
+  @override
+  Future<void> showItemNow(PlannedNotificationItem item) async {
+    scheduledItems.add(item);
+  }
 }
 
 void main() {
