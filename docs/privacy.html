@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Qandil (قنديل)</title>
+  <meta name="description" content="Privacy Policy for Qandil — Offline-first Muslim companion and Quran app.">
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-light: #10b981;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --gold: #d97706;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #10b981;
+        --primary-light: #34d399;
+        --bg: #090d16;
+        --surface: #111827;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border: #1f2937;
+        --gold: #f59e0b;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--primary);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .nav-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .nav-toggle a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .nav-toggle a:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .meta-box {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .meta-box div strong {
+      color: var(--primary);
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h2 {
+      font-size: 22px;
+      color: var(--primary);
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 {
+      font-size: 17px;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+    p { margin-bottom: 14px; }
+    ul {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    li { margin-bottom: 8px; }
+    .highlight-card {
+      background: rgba(16, 185, 129, 0.06);
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .highlight-card.rtl {
+      border-left: none;
+      border-right: 4px solid var(--primary);
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+    .arabic-section {
+      direction: rtl;
+      text-align: right;
+      font-family: -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+    .arabic-section ul {
+      margin-left: 0;
+      margin-right: 24px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    a { color: var(--primary); }
+    @media (max-width: 640px) {
+      .container { padding: 24px 16px; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Privacy First • Offline First</div>
+      <h1>Privacy Policy — سياسة الخصوصية</h1>
+      <p class="subtitle">Qandil (قنديل - رفيق المسلم) • 100% On-Device & Zero Tracking</p>
+      <div class="nav-toggle">
+        <a href="#english">English Version</a>
+        <a href="#arabic">النسخة العربية</a>
+      </div>
+    </div>
+
+    <div class="meta-box">
+      <div><strong>Application</strong> Qandil (قنديل)</div>
+      <div><strong>Bundle / Package ID</strong> com.mmazin.qandil</div>
+      <div><strong>Developer</strong> Mohamed Mazen</div>
+      <div><strong>Contact Email</strong> <a href="mailto:mohamed_mazin10@hotmail.com">mohamed_mazin10@hotmail.com</a></div>
+      <div><strong>Effective Date</strong> November 28, 2026</div>
+      <div><strong>Source Repository</strong> <a href="https://github.com/mazen93/Qandil" target="_blank">github.com/mazen93/Qandil</a></div>
+    </div>
+
+    <!-- ENGLISH SECTION -->
+    <section id="english">
+      <h2>Privacy Policy (English)</h2>
+      
+      <div class="highlight-card">
+        <strong>Our Privacy Pledge:</strong> Qandil does not collect, transmit, store on servers, monetize, sell, or share your personal data with any third party, advertising network, or analytics provider. All spiritual features run entirely on your local device.
+      </div>
+
+      <h3>1. Location Information</h3>
+      <p>When granted permission, Qandil accesses device geographical coordinates (latitude & longitude) <strong>strictly on your device</strong> for:</p>
+      <ul>
+        <li>Computing astronomical prayer times (Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha) based on your selected calculation method.</li>
+        <li>Determining the exact trigonometric bearing toward the Kaaba in Makkah for the Qibla compass.</li>
+      </ul>
+      <p><strong>Location data is never uploaded to any remote server or shared.</strong> Coordinates are saved solely inside your local device's SQLite database to prevent repeated GPS requests. You may revoke location access anytime in device settings or choose a city manually.</p>
+
+      <h3>2. Device Storage & Local Data</h3>
+      <p>Qandil accesses your app-specific sandboxed storage to cache downloaded Quran recitation audio and Mushaf pages for offline reading. Your reading history, bookmarks, Khatmah goals, custom Adhkar, and Tasbih tallies reside exclusively inside your device's local database and are permanently erased if you uninstall the app.</p>
+
+      <h3>3. Audio & Background Services</h3>
+      <p>The app utilizes foreground media playback services solely to support uninterrupted Quran audio recitation and Adhan playback while the screen is locked or while multitasking. <strong>The app never records audio or requests microphone access.</strong></p>
+
+      <h3>4. Local Notifications</h3>
+      <p>Prayer time alarms, full Adhan audio alerts, and morning/evening dhikr reminders are scheduled <strong>locally on your device</strong> using system alarms. Qandil does not use third-party push notification services or remote notification servers.</p>
+
+      <h3>5. Third-Party Services & Zero Tracking</h3>
+      <ul>
+        <li><strong>No Ads:</strong> Qandil contains zero advertising SDKs and zero banner ads.</li>
+        <li><strong>No Analytics / Tracking:</strong> No Google Analytics, Firebase Analytics, Meta Pixel, or user profiling SDKs are present.</li>
+        <li><strong>CDNs:</strong> Quran recitation audio and translation downloads connect directly to verified public open-source Islamic content delivery networks (Quran.com, QuranicAudio.com, EveryAyah.com) using standard HTTP requests without passing user identities.</li>
+      </ul>
+
+      <h3>6. Children’s Privacy</h3>
+      <p>Qandil does not collect personal data from any user, including children under 13 (COPPA & GDPR compliant).</p>
+
+      <h3>7. Contact Information</h3>
+      <p>For questions or feedback, contact developer Mohamed Mazen at <a href="mailto:mohamed_mazin10@hotmail.com">mohamed_mazin10@hotmail.com</a> or visit <a href="https://github.com/mazen93/Qandil" target="_blank">github.com/mazen93/Qandil</a>.</p>
+    </section>
+
+    <hr>
+
+    <!-- ARABIC SECTION -->
+    <section id="arabic" class="arabic-section">
+      <h2>سياسة الخصوصية (النسخة العربية)</h2>
+
+      <div class="highlight-card rtl">
+        <strong>تعهّد الخصوصية:</strong> تطبيق قنديل لا يجمع ولا يرفع إلى أي خوادم خارجية ولا يبيع ولا يشارك أي بيانات شخصية للمستخدمين مع أي جهة أو شبكة إعلانية أو نظام تحليلات. جميع الميزات تعمل محلياً بنسبة 100% داخل جهازك.
+      </div>
+
+      <h3>1. بيانات الموقع الجغرافي</h3>
+      <p>عند منح الصلاحية، يصل التطبيق إلى إحداثيات الموقع (خط الطول ودائرة العرض) <strong>محلياً فقط على هاتفك</strong> لأجل:</p>
+      <ul>
+        <li>حساب مواقيت الصلاة الفلكية بدقة وفقاً للمنهج أو الهيئة الحسابية المختارة.</li>
+        <li>تحديد اتجاه القبلة الدقيق نحو الكعبة المشرفة عبر بوصلة القبلة.</li>
+      </ul>
+      <p><strong>لا يتم إرسال إحداثيات موقعك إلى أي خادم عبر الإنترنت على الإطلاق.</strong> تُحفظ الإحداثيات محلياً فقط في قاعدة بيانات هاتفك لتجنب طلب إذن الموقع في كل مرة. يمكنك إلغاء الصلاحية في أي وقت أو تحديد المدينة يدوياً.</p>
+
+      <h3>2. التخزين والبيانات المحلية</h3>
+      <p>يصل التطبيق إلى مجلد التخزين المعزول الخاص به لحفظ ملفات التلاوات والصفحات المقروءة للعمل دون إنترنت. كما تُحفظ المرجعيات والختمات والسبحة وسجلات الأذكار محلياً فقط وتُحذف فور إلغاء تثبيت التطبيق.</p>
+
+      <h3>3. الصوت والتشغيل في الخلفية</h3>
+      <p>تُستخدم خدمة الوسائط الصوتية فقط لتشغيل تلاوة القرآن الكريم وصوت الأذان عند قفل الشاشة أو استخدام تطبيقات أخرى. <strong>لا يطلب التطبيق ولا يستخدم إذن الميكروفون ولا يسجل أي صوت نهائياً.</strong></p>
+
+      <h3>4. التنبيهات والإشعارات</h3>
+      <p>تتم جدولة تنبيهات الأذان والصلوات والأذكار <strong>محلياً على هاتفك</strong> عبر منبهات النظام دون الاعتماد على خوادم إشعارات خارجية، مما يضمن أقصى درجات الخصوصية والاستقلالية.</p>
+
+      <h3>5. انعدام الإعلانات وأدوات التتبع</h3>
+      <ul>
+        <li><strong>خالٍ تماماً من الإعلانات:</strong> لا يحتوي تطبيق قنديل على أي إعلانات أو بنرات أو نوافذ دعائية.</li>
+        <li><strong>خالٍ من أدوات التتبع:</strong> لا نستخدم أي حزم برمجية لتحليل سلوك المستخدمين أو تتبعهم (مثل Firebase Analytics أو غيرها).</li>
+        <li><strong>شبكات توزيع المحتوى:</strong> تتصل التلاوات والترجمات الصوتية مباشرة بشبكات التوزيع الإسلامية المفتوحة المعتمدة (Quran.com, QuranicAudio.com) دون نقل أي بيانات تعريفية.</li>
+      </ul>
+
+      <h3>6. حماية الأطفال</h3>
+      <p>تطبيق قنديل آمن لجميع الفئات العمرية ولا يجمع أي معلومات شخصية، متوافقاً مع تشريعات COPPA و GDPR.</p>
+
+      <h3>7. التواصل والاستفسارات</h3>
+      <p>لأي استفسار بخصوص سياسة الخصوصية، يسعدنا تواصلكم مع المطوّر محمد مازن عبر البريد الإلكتروني: <a href="mailto:mohamed_mazin10@hotmail.com">mohamed_mazin10@hotmail.com</a> أو زيارة <a href="https://github.com/mazen93/Qandil" target="_blank">مستودع المشروع على GitHub</a>.</p>
+    </section>
+
+    <div class="footer">
+      <p>© 2026 Qandil (قنديل). All rights reserved • جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
+</body>
+</html>
